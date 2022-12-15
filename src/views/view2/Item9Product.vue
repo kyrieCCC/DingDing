@@ -71,7 +71,7 @@
       </div>
       <div class="body-container">
         <div>
-          <img class="product-img" src="@/imgs/item-2.png" />
+          <img class="product-img" src="https://cdn.shopifycdn.net/s/files/1/0676/0723/2799/products/O1CN01BeiA941XfbYTbR9NZ__4071272951-0-cib.jpg?v=1667996650&width=533" />
         </div>
         <div class="product-discript">
           <div class="product-introduce">
@@ -217,7 +217,7 @@
   
   <script>
   export default {
-      name: 'Item2Product',
+      name: 'Item9Product',
       data: function () {
           return {
             

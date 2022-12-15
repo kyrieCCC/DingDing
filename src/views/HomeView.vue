@@ -129,6 +129,7 @@
     <div class="shop-item">
       <div class="shop-item1">
         <img
+        v-on:click="toProduct7"
           src="https://cdn.shopifycdn.net/s/files/1/0676/0723/2799/products/13278537513_985641810.jpg?v=1667996938&width=533"
         />
         <div class="shop-item1-font">
@@ -140,6 +141,7 @@
       </div>
       <div class="shop-item1">
         <img
+        v-on:click="toProduct8"
           src="https://cdn.shopifycdn.net/s/files/1/0676/0723/2799/products/2.jpg?v=1667993138&width=533"
         />
         <div class="shop-item1-font">
@@ -151,6 +153,7 @@
       </div>
       <div class="shop-item1">
         <img
+        v-on:click="toProduct9"
           src="https://cdn.shopifycdn.net/s/files/1/0676/0723/2799/products/O1CN01BeiA941XfbYTbR9NZ__4071272951-0-cib.jpg?v=1667996650&width=533"
         />
         <div class="shop-item1-font">
@@ -164,6 +167,7 @@
     <div class="shop-item">
       <div class="shop-item1">
         <img
+          v-on:click="toProduct6"
           src="../imgs/item-6.png"
         />
         <div class="shop-item1-font">
@@ -175,6 +179,7 @@
       </div>
       <div class="shop-item1">
         <img
+        v-on:click="toProduct4"
           src="../imgs/item-4.png"
         />
         <div class="shop-item1-font">
@@ -186,6 +191,7 @@
       </div>
       <div class="shop-item1">
         <img
+        v-on:click="toProduct5"
           src="../imgs/item-5.png"
         />
         <div class="shop-item1-font">
@@ -216,7 +222,25 @@ export default {
     },
     toProduct3() {
       this.$router.push('/item3product')
-    }
+    },
+    toProduct4() {
+      this.$router.push('/item4product')
+    },
+    toProduct5() {
+      this.$router.push('/item5product')
+    },
+    toProduct6() {
+      this.$router.push('/item6product')
+    },
+    toProduct7() {
+      this.$router.push('/item7product')
+    },
+    toProduct8() {
+      this.$router.push('/item8product')
+    },
+    toProduct9() {
+      this.$router.push('/item9product')
+    },
   }
 }
 </script>

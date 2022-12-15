@@ -5,6 +5,12 @@ import Login from "../views/Login.vue";
 import Item1Product from "../views/view2/Item1Product.vue";
 import Item2Product from "../views/view2/Item2Product.vue";
 import Item3Product from "../views/view2/Item3Product.vue";
+import Item4Product from "../views/view2/Item4Product.vue";
+import Item5Product from "../views/view2/Item5Product.vue";
+import Item6Product from "../views/view2/Item6Product.vue";
+import Item7Product from "../views/view2/Item7Product.vue";
+import Item8Product from "../views/view2/Item8Product.vue";
+import Item9Product from "../views/view2/Item9Product.vue";
 
 
 Vue.use(VueRouter);
@@ -33,12 +39,42 @@ const routes = [
   {
     path: "/item2product",
     name: "Item2Product",
-    component: Item2Product
+    component: Item2Product,
   },
   {
     path: "/item3product",
     name: "Item3Product",
     component: Item3Product,
+  },
+  {
+    path: "/item4product",
+    name: "Item4Product",
+    component: Item4Product,
+  },
+  {
+    path: "/item5product",
+    name: "Item5Product",
+    component: Item5Product,
+  },
+  {
+    path: "/item6product",
+    name: "Item6Product",
+    component: Item6Product,
+  },
+  {
+    path: "/item7product",
+    name: "Item7Product",
+    component: Item7Product,
+  },
+  {
+    path: "/item8product",
+    name: "Item8Product",
+    component: Item8Product,
+  },
+  {
+    path: "/item9product",
+    name: "Item9Product",
+    component: Item9Product,
   }
 ];
 const router = new VueRouter({

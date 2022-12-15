@@ -71,7 +71,7 @@
       </div>
       <div class="body-container">
         <div>
-          <img class="product-img" src="@/imgs/item-2.png" />
+          <img class="product-img" src="@/imgs/item-5.png" />
         </div>
         <div class="product-discript">
           <div class="product-introduce">
@@ -217,10 +217,10 @@
   
   <script>
   export default {
-      name: 'Item2Product',
+      name: 'Item5Product',
       data: function () {
           return {
-            
+  
           }
       },
       methods: {
