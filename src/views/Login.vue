@@ -118,7 +118,7 @@
           <el-input v-model="password" show-password />
         </div>
         <div class="botton">
-          <el-button @click="loginEventPass">{{
+          <el-button @click="loginEvent">{{
             $t("message.login")
           }}</el-button>    
         </div>
@@ -143,7 +143,7 @@
 
 <script>
 import router from "@/router";
-// import {loginService} from "@/service/login.js"
+import { loginService } from "../service/login.js"
 // import store from "@/store/index.js";
 
 export default {
@@ -159,29 +159,22 @@ export default {
     chargeL(command) {
       this.$i18n.locale = command;
     },
-    loginEventPass() {
-      if (this.username === "admin" && this.password === "123456") {
-        this.$notify({
-          title: "成功",
-          message: "登陆成功",
-          type: "success",
-        });
-        this.$router.push("/home");
-      }
-    },
+
+    //这是原始的登录方法，这个方法不需要去后端找数据
+    // loginEventPass() {
+    //   if (this.username === "admin" && this.password === "123456") {
+    //     this.$notify({
+    //       title: "成功",
+    //       message: "登陆成功",
+    //       type: "success",
+    //     });
+    //     this.$router.push("/home");
+    //   }
+    // },
+
     async loginEvent() {
-      const pathparams = 1;
-      // const token = "woxihuanpenghui";
-      // sessionStorage.setItem("token", token);
-
-      // const res = await axios.get(`http://127.0.0.1:4523/m1/1668490-0-default/login?username=${this.username}&password=${this.password}`)
-      // if (res.data.code !== 0) {
-      //   this.$message.error('登录失败，请检查账号密码是否正确');
-      //   return;
-      // }
-
       const res = await loginService(this.username, this.password);
-      if (!res.data.success) {
+      if (!res.data.success) { //通过success这个属性确定是否存在该数据
         this.$notify({
           title: "提示",
           message: "登陆失败",
@@ -189,17 +182,11 @@ export default {
         });
         return;
       }
-
-      sessionStorage.setItem("token", res.data.data.token); //获取token值
-      // console.log('token:', this.loginData.getAciton('token'))
-
       this.$notify({
         title: "成功",
         message: "页面跳转成功",
         type: "success",
       });
-      //跳转页面
-      // router.push({path: 'home'})
       this.$router.push("/home");
     },
   },
