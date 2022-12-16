@@ -94,13 +94,13 @@
             text-color="#fff"
             active-text-color="#ffd04b"
           >
-            <el-menu-item index="1" @click="changePath('mydata')">
+            <el-menu-item index="1" @click="changePath('userview')">
               <i class="el-icon-menu"></i>
               <span slot="title">客户信息</span>
             </el-menu-item>
-            <el-menu-item index="2" @click="changePath('lib')">
+            <el-menu-item index="2" @click="changePath('adminview')">
               <i class="el-icon-document"></i>
-              <span slot="title">仓库内容</span>
+              <span slot="title">管理员信息</span>
             </el-menu-item>
             <el-menu-item index="3" @click="changePath('future')">
               <i class="el-icon-setting"></i>

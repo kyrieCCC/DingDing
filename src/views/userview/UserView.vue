@@ -23,7 +23,7 @@
 <script>
 import http from "@/service/index";
 export default {
-  name: "Lib",
+  name: "UserView",
   data() {
     return {
       tableData: [],

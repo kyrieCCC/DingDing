@@ -15,6 +15,7 @@ import VisitorHome from "../views/VisitorHome.vue"
 import ManagementPage from "../views/ManagementPage.vue"
 import AdminLogin from "../views/AdminLogin.vue"
 import UserView from "../views/userview/UserView.vue"
+import AdminView from "../views/userview/AdminView.vue"
 
 
 Vue.use(VueRouter);
@@ -54,6 +55,10 @@ const routes = [
       {
         path: "userview",
         component: UserView,
+      },
+      {
+        path: "adminview",
+        component: AdminView,
       },
     ]
   },
