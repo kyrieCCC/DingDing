@@ -11,6 +11,10 @@ import Item6Product from "../views/view2/Item6Product.vue";
 import Item7Product from "../views/view2/Item7Product.vue";
 import Item8Product from "../views/view2/Item8Product.vue";
 import Item9Product from "../views/view2/Item9Product.vue";
+import VisitorHome from "../views/VisitorHome.vue"
+import ManagementPage from "../views/ManagementPage.vue"
+import AdminLogin from "../views/AdminLogin.vue"
+import UserView from "../views/userview/UserView.vue"
 
 
 Vue.use(VueRouter);
@@ -30,6 +34,28 @@ const routes = [
     path: "/",
     name: "Login",
     component: Login,
+  },
+  {
+    path: "/visitorhome",
+    name: "VisitorHome",
+    component: VisitorHome,
+  },
+  {
+    path: "/adminlogin",
+    name: "AdminLogin",
+    component: AdminLogin,
+  },
+  {
+    path: "/managementpage",
+    name: "ManagementPage",
+    component: ManagementPage,
+    children: [
+      { path: "/", redirect: "/managementpage/userview" },
+      {
+        path: "userview",
+        component: UserView,
+      },
+    ]
   },
   {
     path: "/item1product",

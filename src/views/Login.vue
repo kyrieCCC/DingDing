@@ -118,9 +118,11 @@
           <el-input v-model="password" show-password />
         </div>
         <div class="botton">
+          <el-button size="mini" round @click="loginByAdmin">我是管理员</el-button>
           <el-button @click="loginEvent">{{
             $t("message.login")
-          }}</el-button>    
+          }}</el-button>
+          <el-button size="mini" round @click="loginByVisitor">游客进入</el-button>    
         </div>
       </div>
     </div>
@@ -188,6 +190,17 @@ export default {
         type: "success",
       });
       this.$router.push("/home");
+    },
+    loginByVisitor() {
+      this.$notify({
+        title: "成功",
+        message: "您当前浏览的是游客界面",
+        type: "success",
+      });
+      this.$router.push("/visitorhome");
+    },
+    loginByAdmin() {
+      this.$router.push("/adminlogin")
     },
   },
 };
@@ -266,7 +279,9 @@ a {
 }
 .botton {
   margin-top: 12px;
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .forget-content {
   float: right;
