@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-      <div class="header">
+      <div class="managementheader">
         <div class="header_left">
           <svg
             t="1663504224845"
@@ -144,7 +144,7 @@
   .container{
     height: 100%;
   }
-  .header {
+  .managementheader {
     background-color: #161b22;
     height: 30px;
     display: flex;

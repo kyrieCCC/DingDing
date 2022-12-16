@@ -129,7 +129,7 @@
     <div class="help">
       <div class="help-content">
         New to DingDing?
-        <a href="#" class="a-color"> Create an account .</a>
+        <a @click="toRegister" class="a-color"> Create an account .</a>
       </div>
     </div>
     <div>
@@ -202,6 +202,9 @@ export default {
     loginByAdmin() {
       this.$router.push("/adminlogin")
     },
+    toRegister() {
+      this.$router.push("/register")
+    }
   },
 };
 </script>
@@ -241,6 +244,11 @@ a {
   margin: 16px;
   text-align: center;
   font-size: 14px;
+}
+
+.a-color:hover {
+  cursor: pointer;
+  border-bottom: 1px solid #acd5f1;
 }
 
 .foot-content {

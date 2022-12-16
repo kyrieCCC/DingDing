@@ -16,6 +16,7 @@ import ManagementPage from "../views/ManagementPage.vue"
 import AdminLogin from "../views/AdminLogin.vue"
 import UserView from "../views/userview/UserView.vue"
 import AdminView from "../views/userview/AdminView.vue"
+import Register from "../views/userview/Register.vue"
 
 
 Vue.use(VueRouter);
@@ -45,6 +46,11 @@ const routes = [
     path: "/adminlogin",
     name: "AdminLogin",
     component: AdminLogin,
+  },
+  {
+    path: "/register",
+    name: "Register",
+    component: Register,
   },
   {
     path: "/managementpage",
