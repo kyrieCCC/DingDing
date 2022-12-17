@@ -17,6 +17,7 @@ import AdminLogin from "../views/AdminLogin.vue"
 import UserView from "../views/userview/UserView.vue"
 import AdminView from "../views/userview/AdminView.vue"
 import Register from "../views/userview/Register.vue"
+import Update from "../views/userview/Update.vue"
 
 
 Vue.use(VueRouter);
@@ -26,6 +27,18 @@ const routes = [
     path: "/home",
     name: "home",
     component: HomeView,
+    // children: [
+    //   {
+    //     path: "/update",
+    //     name: "Update",
+    //     component: Update,
+    //   },
+    // ]
+  },
+  {
+    path: "/update",
+    name: "Update",
+    component: Update,
   },
   {
     path: "/login",

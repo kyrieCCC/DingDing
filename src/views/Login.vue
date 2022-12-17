@@ -145,6 +145,8 @@
 
 <script>
 import router from "@/router";
+// import EventBus from "../bus/index.js"
+import { EventBus } from "../bus/index"
 import { loginService } from "../service/login.js"
 // import store from "@/store/index.js";
 
@@ -161,6 +163,7 @@ export default {
     chargeL(command) {
       this.$i18n.locale = command;
     },
+
 
     //这是原始的登录方法，这个方法不需要去后端找数据
     // loginEventPass() {
@@ -189,6 +192,8 @@ export default {
         message: "页面跳转成功",
         type: "success",
       });
+      // this.$emit('userdata', {data: this.username})
+      EventBus.$emit('userdata', { userdata: this.username })
       this.$router.push("/home");
     },
     loginByVisitor() {

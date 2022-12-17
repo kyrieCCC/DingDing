@@ -3,8 +3,8 @@
     <div class="header">
       <div class="header_left">
         <img src="../imgs/logo.png" class="header_left-img" />
-        <div class="header_left_font">Home Page</div>
-        <div class="header_left_font">Produce List</div>
+        <div class="header_left_font" >Hello {{username}}</div>
+        <div class="header_left_font"  @click="ToUpdate">Update User Data</div>
         <div class="header_left_font">Contact Us</div>
       </div>
       <div class="header_middle"></div>
@@ -206,14 +206,37 @@
 </template>
 
 <script>
+import { EventBus } from "../bus/index.js"
 export default {
   name: "HomeView",
+  // props: ["username"],
   data: function () {
     return {
-      
+      username: '',
     }
   },
+  // created() {
+  //   EventBus.$on('userdata', (userdata) => {
+  //     // console.log('userdata is ' + userdata)
+  //     console.log(userdata)
+  //     this.username = userdata
+  //     console.log(this.username.userdata)
+  //   })
+  // },
+  // mounted() {
+  //   EventBus.$on('userdata', (userdata) => {
+  //     // console.log('userdata is ' + userdata)
+  //     console.log(userdata)
+  //     this.username = userdata
+  //     console.log(this.username.userdata)
+  //     EventBus.$emit('usernameData', { usernameData: this.username.userdata })
+  //   })
+  // },
   methods: {
+    ToUpdate() {
+      // EventBus.$emit('usernameData', { usernameData: this.username })
+      this.$router.push('/update')
+    },
     toProduct1() {
       this.$router.push('/item1product')
     },
