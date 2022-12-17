@@ -21,7 +21,8 @@
 </template>
 
 <script>
-import http from "@/service/index";
+import { deleteData } from "@/service/delete.js";
+import http from "@/service/index.js"
 export default {
   name: "UserView",
   data() {
@@ -33,8 +34,19 @@ export default {
     await this.getUserData();
   },
   methods: {
-    deleteRow(row, tableData) {
-      console.log(row, tableData);
+    async deleteRow(row, tableData) {
+      // console.log(row.username, tableData);
+      const res = await deleteData(row.username)
+      if (!res) {
+        this.$notify({
+          title: "成功",
+          message: "数据删除成功,3s后返回主页面",
+          type: "success",
+        });
+        setTimeout(() => {
+          this.$router.push('/managementpage')
+        }, 3000)
+      }
     },
     async getUserData() {
       const res = await http.get("/user/all");
