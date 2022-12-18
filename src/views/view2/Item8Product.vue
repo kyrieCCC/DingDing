@@ -206,7 +206,21 @@
                 </div>
               </div>
               <div class="pay-buttom">
-              <el-button type="success">购买</el-button>
+              <el-button type="success"  @click="dialogVisible = true">购买</el-button>
+              <el-dialog
+                title="提示"
+                :visible.sync="dialogVisible"
+                width="30%"
+                :before-close="handleClose"
+              >
+                <span>您确认要购买该商品吗</span>
+                <span slot="footer" class="dialog-footer">
+                  <el-button @click="dialogVisible = false">取 消</el-button>
+                  <el-button type="primary" @click="pay_button_yes"
+                    >确 定</el-button
+                  >
+                </span>
+              </el-dialog>
               <div class="number-tips">剩余数量: {{ number }}</div>
             </div>
             </div>
@@ -218,6 +232,7 @@
   
   <script>
 import http from "@/service/index";
+import { payProduct } from "@/service/update.js"
 export default {
   name: "Item8Product",
   data: function () {
@@ -225,6 +240,7 @@ export default {
       ID: "p1008",
       prices: "",
       number: "",
+      dialogVisible: false,
     };
   },
   async mounted() {
@@ -237,6 +253,28 @@ export default {
       this.prices = res.data.data[0].prices;
       this.number = res.data.data[0].number;
       // console.log(this.prices);
+    },
+    async pay_button_yes() {
+      // setTimeout(() => {
+      //   this.dialogVisible = false
+      // }, 3000)
+      await payProduct(this.ID, this.number)
+      this.dialogVisible = false
+      this.$notify({
+          title: '成功',
+          message: '购买成功',
+          type: 'success'
+      });
+      setTimeout(() => {
+        location.reload();
+      }, 2000)
+    },
+    handleClose(done) {
+      this.$confirm("确认关闭？")
+        .then((_) => {
+          done();
+        })
+        .catch((_) => {});
     },
     setBorder(id) {
       document.getElementById(id).style.border = "1px solid red";

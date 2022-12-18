@@ -136,6 +136,7 @@
     // },
     methods: {
       signOut() {
+        sessionStorage.removeItem('adminID')
         this.$router.push("/login");
       },
       changePath(path) {

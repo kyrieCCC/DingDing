@@ -217,6 +217,8 @@ export default {
   // },
   async mounted() {
     await this.getProductInfo();
+    this.username = sessionStorage.getItem('username')
+    this.$bus.$on('userdata', (data) => console.log('我收到了信息子' + data))
   },
   methods: {
     async getProductInfo() {
@@ -232,6 +234,10 @@ export default {
       this.prices9 = res.data.data[8].prices
       // this.prices = res.data.data[0].prices;
       // console.log(this.prices);
+    },
+    getData(data) {
+      console.log(data)
+      this.username = data
     },
     ToUpdate() {
       // EventBus.$emit('usernameData', { usernameData: this.username })

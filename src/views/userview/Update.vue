@@ -10,8 +10,8 @@
             :model="formLabelAlign"
           >
             <el-form-item label="用户名">
-              <el-input v-model="formLabelAlign.username" placeholder="请输入用户名"></el-input>
-            <!-- <div>您无法修改用户名{{formLabelAlign.username}}，请更改下列信息</div> -->
+              <!-- <el-input v-model="formLabelAlign.username" placeholder="请输入用户名"></el-input> -->
+            <div>您无法修改用户名 {{formLabelAlign.username}}，请更改下列信息</div>
             </el-form-item>
             <el-form-item label="登陆密码">
               <el-input v-model="formLabelAlign.password" placeholder="请输入密码"></el-input>
@@ -50,6 +50,7 @@
       console.log(userdata)
         this.formLabelAlign.username = userdata
       })
+      this.formLabelAlign.username = sessionStorage.getItem('username')
     },
     methods: {
       async onSubmit() {

@@ -181,6 +181,7 @@ import { loginService, adminLoginService } from "../service/login.js"
           });
           return;
         }
+        sessionStorage.setItem('adminID', this.id)
         this.$notify({
           title: "成功",
           message: "页面跳转成功",
