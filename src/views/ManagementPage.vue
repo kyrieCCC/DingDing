@@ -106,6 +106,10 @@
               <i class="el-icon-setting"></i>
               <span slot="title">商品信息</span>
             </el-menu-item>
+            <el-menu-item index="4" @click="changePath('supplierview')">
+              <i class="el-icon-setting"></i>
+              <span slot="title">供应商信息</span>
+            </el-menu-item>
           </el-menu>
           <div class="daohang-bottom">
             <div>

@@ -19,6 +19,7 @@ import AdminView from "../views/userview/AdminView.vue"
 import Register from "../views/userview/Register.vue"
 import Update from "../views/userview/Update.vue"
 import ProductView from "../views/userview/ProductView.vue"
+import supplierView from "../views/userview/supplierView.vue"
 
 
 Vue.use(VueRouter);
@@ -83,6 +84,10 @@ const routes = [
       {
         path: "productview",
         component: ProductView,
+      },
+      {
+        path: "supplierview",
+        component: supplierView,
       },
     ]
   },
