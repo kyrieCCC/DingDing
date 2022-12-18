@@ -108,7 +108,7 @@
           <div class="product-money">
             <div>
               <span class="money-discript"> 秒杀价: </span>
-              <span class="price-money"> $ 207USD </span>
+              <span class="price-money"> $ {{ prices }}USD </span>
             </div>
           </div>
           <div class="product-money">
@@ -125,18 +125,10 @@
             <span class="chooise-for-size" id="XL" @click="setBorder('XL')">
               XL中
             </span>
-            <span
-              class="chooise-for-size"
-              id="XXL"
-              @click="setBorder('XXL')"
-            >
+            <span class="chooise-for-size" id="XXL" @click="setBorder('XXL')">
               XXL大
             </span>
-            <span
-              class="chooise-for-size"
-              id="XXXL"
-              @click="setBorder('XXXL')"
-            >
+            <span class="chooise-for-size" id="XXXL" @click="setBorder('XXXL')">
               XXXL加大
             </span>
           </div>
@@ -207,6 +199,7 @@
             </div>
             <div class="pay-buttom">
               <el-button type="success">购买</el-button>
+              <div class="number-tips">剩余数量: {{ number }}</div>
             </div>
           </div>
         </div>
@@ -216,19 +209,32 @@
 </template>
 
 <script>
+import http from "@/service/index";
 export default {
-    name: 'Item1Product',
-    data: function () {
-        return {
-
-        }
+  name: "Item1Product",
+  data: function () {
+    return {
+      ID: "p1001",
+      prices: "",
+      number: "",
+    };
+  },
+  async mounted() {
+    await this.getProductInfo(this.ID, this.number);
+  },
+  methods: {
+    async getProductInfo(ID, number) {
+      const res = await http.get(`/product`, { params: { ID, number } });
+      // console.log(res.data.data[0])
+      this.prices = res.data.data[0].prices;
+      this.number = res.data.data[0].number;
+      // console.log(this.prices);
     },
-    methods: {
-      setBorder(id) {
-            document.getElementById(id).style.border="1px solid red"
-        }
-    }
-}
+    setBorder(id) {
+      document.getElementById(id).style.border = "1px solid red";
+    },
+  },
+};
 </script>
 
 <style lang="scss">
@@ -393,5 +399,10 @@ export default {
   justify-content: center;
   align-items: center;
   margin-top: 30px;
+}
+.number-tips {
+  font-size: 12px;
+  color: #999;
+  margin-left: 20px;
 }
 </style>

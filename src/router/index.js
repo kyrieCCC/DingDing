@@ -18,6 +18,7 @@ import UserView from "../views/userview/UserView.vue"
 import AdminView from "../views/userview/AdminView.vue"
 import Register from "../views/userview/Register.vue"
 import Update from "../views/userview/Update.vue"
+import ProductView from "../views/userview/ProductView.vue"
 
 
 Vue.use(VueRouter);
@@ -78,6 +79,10 @@ const routes = [
       {
         path: "adminview",
         component: AdminView,
+      },
+      {
+        path: "productview",
+        component: ProductView,
       },
     ]
   },

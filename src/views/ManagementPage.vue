@@ -102,11 +102,16 @@
               <i class="el-icon-document"></i>
               <span slot="title">管理员信息</span>
             </el-menu-item>
-            <el-menu-item index="3" @click="changePath('future')">
+            <el-menu-item index="3" @click="changePath('productview')">
               <i class="el-icon-setting"></i>
-              <span slot="title">未来可期</span>
+              <span slot="title">商品信息</span>
             </el-menu-item>
           </el-menu>
+          <div class="daohang-bottom">
+            <div>
+              😎made by wlc ljk zpf ykr
+            </div>
+          </div>
         </div>
         <div class="content">
           <router-view />
@@ -180,6 +185,7 @@
   }
   
   .daohang {
+    height: 900px;
     width: 270px;
   }
   .body {
@@ -194,6 +200,14 @@
   
   .el-menu-vertical-demo{
     height: calc(100% - 70px);
+  }
+  .daohang-bottom {
+    height: 50px;
+    font-size: 12px;
+    color: #757575;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
   </style>
   

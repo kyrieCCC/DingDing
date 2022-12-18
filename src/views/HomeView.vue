@@ -3,8 +3,8 @@
     <div class="header">
       <div class="header_left">
         <img src="../imgs/logo.png" class="header_left-img" />
-        <div class="header_left_font" >Hello {{username}}</div>
-        <div class="header_left_font"  @click="ToUpdate">Update User Data</div>
+        <div class="header_left_font">Hello {{ username }}</div>
+        <div class="header_left_font" @click="ToUpdate">Update User Data</div>
         <div class="header_left_font">Contact Us</div>
       </div>
       <div class="header_middle"></div>
@@ -90,130 +90,113 @@
     <div class="featured">Featured products</div>
     <div class="shop-item">
       <div class="shop-item1">
-        <img
-          v-on:click="toProduct1"
-          src="../imgs/item-1.png"
-        />
+        <img v-on:click="toProduct1" src="../imgs/item-1.png" />
         <div class="shop-item1-font">
-          cotton Shengcai 2022 spring new European and American women's dress Amazon long sleeve off shoulder bride wedding dress dress
+          cotton Shengcai 2022 spring new European and American women's dress
+          Amazon long sleeve off shoulder bride wedding dress dress
         </div>
-        <div style="font-size: 14px;margin-top: 8px;">
-          $160.00 USD        
-        </div>
+        <div style="font-size: 14px; margin-top: 8px">${{prices1}}.00 USD</div>
       </div>
       <div class="shop-item1">
-        <img
-          v-on:click="toProduct2"
-          src="../imgs/item-2.png"
-        />
+        <img v-on:click="toProduct2" src="../imgs/item-2.png" />
         <div class="shop-item1-font">
-          Custom Latest design high quality men's long woollen trench overcoat winter coat wool men coat with button
+          Custom Latest design high quality men's long woollen trench overcoat
+          winter coat wool men coat with button
         </div>
-        <div style="font-size: 14px;margin-top: 8px;">
-          $254.99 USD        
-        </div>
+        <div style="font-size: 14px; margin-top: 8px">${{prices2}}.99 USD</div>
       </div>
       <div class="shop-item1">
-        <img
-          v-on:click="toProduct3"
-          src="../imgs/item-3.png"
-        />
+        <img v-on:click="toProduct3" src="../imgs/item-3.png" />
         <div class="shop-item1-font">
-          European and American fashion autumn dress, small horn, ruffle, long sleeve, slim bow, high-grade dress
+          European and American fashion autumn dress, small horn, ruffle, long
+          sleeve, slim bow, high-grade dress
         </div>
-        <div style="font-size: 14px;margin-top: 8px;">
-          $58.00 USD        
-        </div>
+        <div style="font-size: 14px; margin-top: 8px">${{prices3}}.00 USD</div>
       </div>
     </div>
     <div class="shop-item">
       <div class="shop-item1">
         <img
-        v-on:click="toProduct7"
+          v-on:click="toProduct7"
           src="https://cdn.shopifycdn.net/s/files/1/0676/0723/2799/products/13278537513_985641810.jpg?v=1667996938&width=533"
         />
         <div class="shop-item1-font">
-          cotton Shengcai 2022 spring new European and American women's dress Amazon long sleeve off shoulder bride wedding dress dress
+          cotton Shengcai 2022 spring new European and American women's dress
+          Amazon long sleeve off shoulder bride wedding dress dress
         </div>
-        <div style="font-size: 14px;margin-top: 8px;">
-          $160.00 USD        
-        </div>
+        <div style="font-size: 14px; margin-top: 8px">${{prices4}}.00 USD</div>
       </div>
       <div class="shop-item1">
         <img
-        v-on:click="toProduct8"
+          v-on:click="toProduct8"
           src="https://cdn.shopifycdn.net/s/files/1/0676/0723/2799/products/2.jpg?v=1667993138&width=533"
         />
         <div class="shop-item1-font">
-          Custom Latest design high quality men's long woollen trench overcoat winter coat wool men coat with button
+          Custom Latest design high quality men's long woollen trench overcoat
+          winter coat wool men coat with button
         </div>
-        <div style="font-size: 14px;margin-top: 8px;">
-          $254.99 USD        
-        </div>
+        <div style="font-size: 14px; margin-top: 8px">${{prices5}}.99 USD</div>
       </div>
       <div class="shop-item1">
         <img
-        v-on:click="toProduct9"
+          v-on:click="toProduct9"
           src="https://cdn.shopifycdn.net/s/files/1/0676/0723/2799/products/O1CN01BeiA941XfbYTbR9NZ__4071272951-0-cib.jpg?v=1667996650&width=533"
         />
         <div class="shop-item1-font">
-          European and American fashion autumn dress, small horn, ruffle, long sleeve, slim bow, high-grade dress
+          European and American fashion autumn dress, small horn, ruffle, long
+          sleeve, slim bow, high-grade dress
         </div>
-        <div style="font-size: 14px;margin-top: 8px;">
-          $58.00 USD        
-        </div>
+        <div style="font-size: 14px; margin-top: 8px">${{prices6}}.00 USD</div>
       </div>
     </div>
     <div class="shop-item">
       <div class="shop-item1">
-        <img
-          v-on:click="toProduct6"
-          src="../imgs/item-6.png"
-        />
+        <img v-on:click="toProduct6" src="../imgs/item-6.png" />
         <div class="shop-item1-font">
-          cotton Shengcai 2022 spring new European and American women's dress Amazon long sleeve off shoulder bride wedding dress dress
+          cotton Shengcai 2022 spring new European and American women's dress
+          Amazon long sleeve off shoulder bride wedding dress dress
         </div>
-        <div style="font-size: 14px;margin-top: 8px;">
-          $160.00 USD        
-        </div>
+        <div style="font-size: 14px; margin-top: 8px">${{prices7}}.00 USD</div>
       </div>
       <div class="shop-item1">
-        <img
-        v-on:click="toProduct4"
-          src="../imgs/item-4.png"
-        />
+        <img v-on:click="toProduct4" src="../imgs/item-4.png" />
         <div class="shop-item1-font">
-          Custom Latest design high quality men's long woollen trench overcoat winter coat wool men coat with button
+          Custom Latest design high quality men's long woollen trench overcoat
+          winter coat wool men coat with button
         </div>
-        <div style="font-size: 14px;margin-top: 8px;">
-          $254.99 USD        
-        </div>
+        <div style="font-size: 14px; margin-top: 8px">${{prices8}}.99 USD</div>
       </div>
       <div class="shop-item1">
-        <img
-        v-on:click="toProduct5"
-          src="../imgs/item-5.png"
-        />
+        <img v-on:click="toProduct5" src="../imgs/item-5.png" />
         <div class="shop-item1-font">
-          European and American fashion autumn dress, small horn, ruffle, long sleeve, slim bow, high-grade dress
+          European and American fashion autumn dress, small horn, ruffle, long
+          sleeve, slim bow, high-grade dress
         </div>
-        <div style="font-size: 14px;margin-top: 8px;">
-          $58.00 USD        
-        </div>
+        <div style="font-size: 14px; margin-top: 8px">${{prices9}}.00 USD</div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import { EventBus } from "../bus/index.js"
+import { EventBus } from "../bus/index.js";
+import http from "@/service/index";
 export default {
   name: "HomeView",
   // props: ["username"],
   data: function () {
     return {
-      username: '',
-    }
+      username: "",
+      prices1: "",
+      prices2: "",
+      prices3: "",
+      prices4: "",
+      prices5: "",
+      prices6: "",
+      prices7: "",
+      prices8: "",
+      prices9: "",
+    };
   },
   // created() {
   //   EventBus.$on('userdata', (userdata) => {
@@ -232,40 +215,57 @@ export default {
   //     EventBus.$emit('usernameData', { usernameData: this.username.userdata })
   //   })
   // },
+  async mounted() {
+    await this.getProductInfo();
+  },
   methods: {
+    async getProductInfo() {
+      const res = await http.get(`/product/all`);
+      this.prices1 = res.data.data[0].prices
+      this.prices2 = res.data.data[1].prices
+      this.prices3 = res.data.data[2].prices
+      this.prices4 = res.data.data[3].prices
+      this.prices5 = res.data.data[4].prices
+      this.prices6 = res.data.data[5].prices
+      this.prices7 = res.data.data[6].prices
+      this.prices8 = res.data.data[7].prices
+      this.prices9 = res.data.data[8].prices
+      // this.prices = res.data.data[0].prices;
+      // console.log(this.prices);
+    },
     ToUpdate() {
       // EventBus.$emit('usernameData', { usernameData: this.username })
-      this.$router.push('/update')
+      this.$router.push("/update");
     },
     toProduct1() {
-      this.$router.push('/item1product')
+      this.$router.push("/item1product");
     },
     toProduct2() {
-      this.$router.push('/item2product')
+      this.$router.push("/item2product");
     },
     toProduct3() {
-      this.$router.push('/item3product')
+      this.$router.push("/item3product");
     },
     toProduct4() {
-      this.$router.push('/item4product')
+      this.$router.push("/item4product");
     },
     toProduct5() {
-      this.$router.push('/item5product')
+      this.$router.push("/item5product");
     },
     toProduct6() {
-      this.$router.push('/item6product')
+      this.$router.push("/item6product");
     },
     toProduct7() {
-      this.$router.push('/item7product')
+      this.$router.push("/item7product");
     },
     toProduct8() {
-      this.$router.push('/item8product')
+      this.$router.push("/item8product");
     },
     toProduct9() {
-      this.$router.push('/item9product')
+      this.$router.push("/item9product");
     },
-  }
-}
+  },
+};
 </script>
 
 <style>
@@ -402,7 +402,7 @@ export default {
   width: 362px;
   height: 362px;
 }
-.shop-item1 > img:hover{
+.shop-item1 > img:hover {
   cursor: pointer;
   scale: 1.05;
 }

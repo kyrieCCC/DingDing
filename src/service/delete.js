@@ -4,4 +4,8 @@ function deleteData(username) {
     http.post(`/delete`, null, { params: { username } })
 }
 
-export { deleteData }
+function deleteProductData(ID) {
+    http.post(`/deleteproduct`, null, { params: { ID } })
+}
+
+export { deleteData, deleteProductData }
