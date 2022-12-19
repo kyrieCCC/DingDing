@@ -2,10 +2,9 @@
     <div>
       <el-table :data="tableData" style="width: 100%">
         <el-table-column type="index"> </el-table-column>
-        <el-table-column prop="ghid" label="编号"> </el-table-column>
-        <el-table-column prop="telephone" label="电话"> </el-table-column>
-        <el-table-column prop="name" label="名称"> </el-table-column>
-        <el-table-column prop="address" label="地址"> </el-table-column>
+        <el-table-column prop="ID" label="商品编号"> </el-table-column>
+        <el-table-column prop="ghid" label="供货商"> </el-table-column>
+        <el-table-column prop="buynumber" label="购入数量"> </el-table-column>
         <el-table-column fixed="right" label="操作">
           <template slot-scope="scope">
             <el-button
@@ -25,7 +24,7 @@
   import { deleteData } from "@/service/delete.js";
   import http from "@/service/index.js"
   export default {
-    name: "supplierView",
+    name: "orderView",
     data() {
       return {
         tableData: [],
@@ -37,21 +36,20 @@
     methods: {
       async deleteRow(row, tableData) {
         // console.log(row.username, tableData);
-        // const res = await deleteData(row.username)
-        // if (!res) {
-        //   this.$notify({
-        //     title: "成功",
-        //     message: "数据删除成功,3s后返回主页面",
-        //     type: "success",
-        //   });
-        //   setTimeout(() => {
-        //     this.$router.push('/managementpage')
-        //   }, 3000)
-        // }
-        alert('请联系商家进行操作')
+        const res = await deleteData(row.username)
+        if (!res) {
+          this.$notify({
+            title: "成功",
+            message: "数据删除成功,3s后返回主页面",
+            type: "success",
+          });
+          setTimeout(() => {
+            this.$router.push('/managementpage')
+          }, 3000)
+        }
       },
       async getUserData() {
-        const res = await http.get("/supplier/all");
+        const res = await http.get("/order/all");
         this.tableData = res.data.data;
       },
     },
@@ -59,4 +57,3 @@
   </script>
   
   <style lang="scss" scoped></style>
-  

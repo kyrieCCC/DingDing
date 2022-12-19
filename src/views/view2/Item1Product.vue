@@ -101,8 +101,11 @@
                 p-id="5207"
               ></path>
             </svg>
-            <span style="margin-left: 10px">
+            <span style="margin-left: 10px; margin-right: 50px">
               DingDing秒杀正在火热进行中。。。
+            </span>
+            <span style="color: aliceblue;">
+              <el-statistic ref="statistic" format="HH:mm:ss" :value="deadline4" time-indices value-style="color: rgb(230, 224, 224)"> </el-statistic>
             </span>
           </div>
           <div class="product-money">
@@ -163,6 +166,8 @@
               7*32期
             </span>
           </div>
+          <span class="money-discript" style="margin-left: 10px;"> 选择购买数量 </span>
+          <el-input-number v-model="num" :min="1" :max="10" label="描述文字"></el-input-number>
         </div>
         <div class="pay-foritem">
           <div style="margin: 15px 10px">
@@ -231,16 +236,31 @@ export default {
   name: "Item1Product",
   data: function () {
     return {
+      username: '',
+      num: 1,
       ID: "p1001",
       prices: "",
       number: "",
       dialogVisible: false,
+      format:'HH小时:mm:ss:SSS',
+      deadline: Date.now() + 1000 * 60 * 60 * 24 * 2,
+      deadline2: Date.now() + 1000 * 60 * 60 * 8,
+      deadline3: Date.now() + 1000 *  60 *30,
+      deadline4: Date.now() + (new Date().setHours(23,59,59)-Date.now()) ,
     };
   },
   async mounted() {
     await this.getProductInfo(this.ID, this.number);
+    this.username = sessionStorage.getItem('username')
   },
   methods: {
+    hilarity() {
+      this.$notify({
+          title: '提示',
+          message: '时间已到，你可知寸金难买寸光阴？',
+          duration: 0
+        });
+    },
     async getProductInfo(ID, number) {
       const res = await http.get(`/product`, { params: { ID, number } });
       // console.log(res.data.data[0])
@@ -252,7 +272,8 @@ export default {
       // setTimeout(() => {
       //   this.dialogVisible = false
       // }, 3000)
-      await payProduct(this.ID, this.number)
+      console.log(this.ID, this.number, this.num)
+      await payProduct(this.ID, this.number, this.num, this.username)
       this.dialogVisible = false
       this.$notify({
           title: '成功',
@@ -340,7 +361,7 @@ export default {
 }
 .product-introduce {
   width: 500px;
-  height: 300px;
+  height: 330px;
   /* border: 1px solid aqua; */
 }
 .pay-foritem {
@@ -444,5 +465,8 @@ export default {
   font-size: 12px;
   color: #999;
   margin-left: 20px;
+}
+.time{
+  color: rgb(230, 224, 224);
 }
 </style>

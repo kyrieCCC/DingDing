@@ -110,6 +110,14 @@
               <i class="el-icon-setting"></i>
               <span slot="title">供应商信息</span>
             </el-menu-item>
+            <el-menu-item index="5" @click="changePath('orderview')">
+              <i class="el-icon-setting"></i>
+              <span slot="title">购货信息</span>
+            </el-menu-item>
+            <el-menu-item index="6" @click="changePath('saleview')">
+              <i class="el-icon-setting"></i>
+              <span slot="title">购货信息</span>
+            </el-menu-item>
           </el-menu>
           <div class="daohang-bottom">
             <div>
@@ -190,7 +198,7 @@
   }
   
   .daohang {
-    height: 900px;
+    height: 880px;
     width: 270px;
   }
   .body {

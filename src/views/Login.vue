@@ -154,6 +154,7 @@ export default {
   name: "Login",
   data: function () {
     return {
+      
       username: "",
       password: "",
     //   loginData: store,
@@ -183,7 +184,7 @@ export default {
       if (!res.data.success) { //通过success这个属性确定是否存在该数据
         this.$notify({
           title: "提示",
-          message: "登陆失败",
+          message: "登陆失败,请检查用户名与密码是否正确",
           duration: 0,
         });
         return;

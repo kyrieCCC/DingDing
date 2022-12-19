@@ -20,7 +20,8 @@ import Register from "../views/userview/Register.vue"
 import Update from "../views/userview/Update.vue"
 import ProductView from "../views/userview/ProductView.vue"
 import supplierView from "../views/userview/supplierView.vue"
-
+import orderView from "../views/userview/orderView.vue"
+import saleView from "../views/userview/saleView.vue"
 
 Vue.use(VueRouter);
 
@@ -88,6 +89,14 @@ const routes = [
       {
         path: "supplierview",
         component: supplierView,
+      },
+      {
+        path: "orderview",
+        component: orderView,
+      },
+      {
+        path: "saleview",
+        component: saleView
       },
     ]
   },

@@ -5,7 +5,7 @@ function updateData(username, password, sex) {
 }
 
 
-function payProduct(ID, number) {
-    http.post(`/payproduct`, null, { params: { ID, number } })
+function payProduct(ID, number, buynumber, username) {
+    http.post(`/payproduct`, null, { params: { ID, number, buynumber, username } })
 }
 export { updateData, payProduct }
