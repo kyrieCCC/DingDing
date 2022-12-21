@@ -137,7 +137,7 @@
         <a href="#" class="foot-content2">Terms</a>
         <a href="#" class="foot-content2">Privacy</a>
         <a href="#" class="foot-content2">Security</a>
-        <span class="foot-content2">Contact GitHub</span>
+        <span class="foot-content2">Contact DingDing</span>
       </div>
     </div>
   </div>

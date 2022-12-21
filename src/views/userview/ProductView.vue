@@ -187,13 +187,11 @@ export default {
 .el-icon-arrow-down {
   font-size: 12px;
 }
-// .el-popup-parent--hidden /deep/ .v-modal{
-//   display: static;
-// }
 </style>
+
 <style lang="scss">
-.v-modal {
-  // display: static !important
-  z-index: -1 !important;
+.v-modal{
+  z-index: 1 !important;
+  // position: none !important
 }
 </style>
