@@ -220,6 +220,22 @@
                   >
                 </span>
               </el-dialog>
+              <el-dialog    
+                title="提示"
+                :visible.sync="centerDialogVisible"
+                width="30%"
+                center
+              >
+                <img src="@/imgs/code.jpg" style="width: 300px;height: 300px;" center/>
+                <!-- <span slot="footer" class="dialog-footer">
+                  <el-button @click="centerDialogVisible = false"
+                    >取 消</el-button
+                  >
+                  <el-button type="primary" @click="centerDialogVisible = false"
+                    >确 定</el-button
+                  >
+                </span> -->
+              </el-dialog>
               <div class="number-tips">剩余数量: {{ number }}</div>
             </div>
           </div>
@@ -237,6 +253,8 @@ export default {
   data: function () {
     return {
       username: '',
+      center: true,
+      centerDialogVisible: false,
       num: 1,
       ID: "p1002",
       prices: "",
@@ -269,9 +287,10 @@ export default {
       // console.log(this.prices);
     },
     async pay_button_yes() {
-      // setTimeout(() => {
-      //   this.dialogVisible = false
-      // }, 3000)
+      this.centerDialogVisible = true
+      await setTimeout(() => {
+        this.centerDialogVisible = false
+      }, 5000)
       console.log(this.ID, this.number, this.num)
       await payProduct(this.ID, this.number, this.num, this.username)
       this.dialogVisible = false

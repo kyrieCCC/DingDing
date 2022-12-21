@@ -104,8 +104,15 @@
             <span style="margin-left: 10px; margin-right: 50px">
               DingDing秒杀正在火热进行中。。。
             </span>
-            <span style="color: aliceblue;">
-              <el-statistic ref="statistic" format="HH:mm:ss" :value="deadline4" time-indices value-style="color: rgb(230, 224, 224)"> </el-statistic>
+            <span style="color: aliceblue">
+              <el-statistic
+                ref="statistic"
+                format="HH:mm:ss"
+                :value="deadline4"
+                time-indices
+                value-style="color: rgb(230, 224, 224)"
+              >
+              </el-statistic>
             </span>
           </div>
           <div class="product-money">
@@ -166,8 +173,15 @@
               7*32期
             </span>
           </div>
-          <span class="money-discript" style="margin-left: 10px;"> 选择购买数量 </span>
-          <el-input-number v-model="num" :min="1" :max="10" label="描述文字"></el-input-number>
+          <span class="money-discript" style="margin-left: 10px">
+            选择购买数量
+          </span>
+          <el-input-number
+            v-model="num"
+            :min="1"
+            :max="10"
+            label="描述文字"
+          ></el-input-number>
         </div>
         <div class="pay-foritem">
           <div style="margin: 15px 10px">
@@ -220,6 +234,23 @@
                   >
                 </span>
               </el-dialog>
+              <!-- 这个是二维码的提示框 -->
+              <el-dialog    
+                title="提示"
+                :visible.sync="centerDialogVisible"
+                width="30%"
+                center
+              >
+                <img src="@/imgs/code.jpg" style="width: 300px;height: 300px;" center/>
+                <!-- <span slot="footer" class="dialog-footer">
+                  <el-button @click="centerDialogVisible = false"
+                    >取 消</el-button
+                  >
+                  <el-button type="primary" @click="centerDialogVisible = false"
+                    >确 定</el-button
+                  >
+                </span> -->
+              </el-dialog>
               <div class="number-tips">剩余数量: {{ number }}</div>
             </div>
           </div>
@@ -231,35 +262,37 @@
 
 <script>
 import http from "@/service/index";
-import { payProduct } from "@/service/update.js"
+import { payProduct } from "@/service/update.js";
 export default {
   name: "Item1Product",
   data: function () {
     return {
-      username: '',
+      username: "",
+      center: true,
+      centerDialogVisible: false,
       num: 1,
       ID: "p1001",
       prices: "",
       number: "",
       dialogVisible: false,
-      format:'HH小时:mm:ss:SSS',
+      format: "HH小时:mm:ss:SSS",
       deadline: Date.now() + 1000 * 60 * 60 * 24 * 2,
       deadline2: Date.now() + 1000 * 60 * 60 * 8,
-      deadline3: Date.now() + 1000 *  60 *30,
-      deadline4: Date.now() + (new Date().setHours(23,59,59)-Date.now()) ,
+      deadline3: Date.now() + 1000 * 60 * 30,
+      deadline4: Date.now() + (new Date().setHours(23, 59, 59) - Date.now()),
     };
   },
   async mounted() {
     await this.getProductInfo(this.ID, this.number);
-    this.username = sessionStorage.getItem('username')
+    this.username = sessionStorage.getItem("username");
   },
   methods: {
     hilarity() {
       this.$notify({
-          title: '提示',
-          message: '时间已到，你可知寸金难买寸光阴？',
-          duration: 0
-        });
+        title: "提示",
+        message: "时间已到，你可知寸金难买寸光阴？",
+        duration: 0,
+      });
     },
     async getProductInfo(ID, number) {
       const res = await http.get(`/product`, { params: { ID, number } });
@@ -269,20 +302,21 @@ export default {
       // console.log(this.prices);
     },
     async pay_button_yes() {
-      // setTimeout(() => {
-      //   this.dialogVisible = false
-      // }, 3000)
-      console.log(this.ID, this.number, this.num)
-      await payProduct(this.ID, this.number, this.num, this.username)
-      this.dialogVisible = false
+      this.centerDialogVisible = true
+      await setTimeout(() => {
+        this.centerDialogVisible = false
+      }, 5000)
+      console.log(this.ID, this.number, this.num);
+      await payProduct(this.ID, this.number, this.num, this.username);
+      this.dialogVisible = false;
       this.$notify({
-          title: '成功',
-          message: '购买成功',
-          type: 'success'
+        title: "成功",
+        message: "购买成功",
+        type: "success",
       });
-      setTimeout(() => {
+      await setTimeout(() => {
         location.reload();
-      }, 2000)
+      }, 2000);
     },
     handleClose(done) {
       this.$confirm("确认关闭？")
@@ -466,7 +500,7 @@ export default {
   color: #999;
   margin-left: 20px;
 }
-.time{
+.time {
   color: rgb(230, 224, 224);
 }
 </style>
