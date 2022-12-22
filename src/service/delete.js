@@ -8,4 +8,7 @@ function deleteProductData(ID) {
     http.post(`/deleteproduct`, null, { params: { ID } })
 }
 
-export { deleteData, deleteProductData }
+function deleteAdminData(ID) {
+    http.post(`/deleteAdmin`, null, { params: { ID } })
+}
+export { deleteData, deleteProductData, deleteAdminData }

@@ -22,6 +22,7 @@ import ProductView from "../views/userview/ProductView.vue"
 import supplierView from "../views/userview/supplierView.vue"
 import orderView from "../views/userview/orderView.vue"
 import saleView from "../views/userview/saleView.vue"
+import warehouseView from "../views/userview/warehouseView.vue";
 
 Vue.use(VueRouter);
 
@@ -97,6 +98,10 @@ const routes = [
       {
         path: "saleview",
         component: saleView
+      },
+      {
+        path: "warehouseview",
+        component: warehouseView
       },
     ]
   },

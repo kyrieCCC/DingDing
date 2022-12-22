@@ -8,4 +8,8 @@ function updateData(username, password, sex) {
 function payProduct(ID, number, buynumber, username) {
     http.post(`/payproduct`, null, { params: { ID, number, buynumber, username } })
 }
-export { updateData, payProduct }
+
+function updateAdminData(ID, password, telephone, sex) {
+    http.post(`/updateAdmin`, null, { params: { ID, password, telephone, sex } })
+}
+export { updateData, payProduct, updateAdminData }

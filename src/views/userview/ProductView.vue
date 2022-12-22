@@ -6,6 +6,7 @@
       <el-table-column prop="name" label="名称"> </el-table-column>
       <el-table-column prop="number" label="数量"> </el-table-column>
       <el-table-column prop="prices" label="价格"> </el-table-column>
+      <el-table-column prop="ckid" label="储存仓库"> </el-table-column>
       <el-table-column fixed="right" label="操作" width="50">
         <template slot-scope="scope">
           <el-button
@@ -31,7 +32,7 @@
             title="请确认您的购货信息"
             :before-close="handleClose"
             :visible.sync="dialog"
-            direction="ltr"
+            direction="rtl"
             custom-class="demo-drawer"
             ref="drawer"
           >
@@ -56,6 +57,12 @@
                     <el-option label="g1003" value="g1003"></el-option>
                   </el-select>
                 </el-form-item>
+                <el-form-item label="储存仓库" :label-width="formLabelWidth">
+                  <el-select v-model="form.region2" placeholder="请选择仓库id">
+                    <el-option label="中国1号仓" value="c1001"></el-option>
+                    <el-option label="美国1号仓" value="c1002"></el-option>
+                  </el-select>
+                </el-form-item>
               </el-form>
               <div class="demo-drawer__footer">
                 <el-button @click="cancelForm">取 消</el-button>
@@ -71,12 +78,42 @@
         </template>
       </el-table-column>
     </el-table>
+    <el-button
+      type="text"
+      @click="dialogFormVisible = true"
+      style="margin: 20px"
+      >新增商品信息</el-button
+    >
+    <el-dialog title="商品信息" :visible.sync="dialogFormVisible">
+      <el-form :model="form">
+        <el-form-item label="商品编号" :label-width="formLabelWidth">
+          <el-input v-model="form.spid" autocomplete="off"></el-input>
+        </el-form-item>
+        <el-form-item label="商品名" :label-width="formLabelWidth">
+          <el-input v-model="form.newpassword" autocomplete="off"></el-input>
+        </el-form-item>
+        <el-form-item label="数量" :label-width="formLabelWidth">
+          <el-input v-model="form.newnumber" autocomplete="off"></el-input>
+        </el-form-item>
+        <el-form-item label="价格" :label-width="formLabelWidth">
+          <el-input v-model="form.newprice" autocomplete="off"></el-input>
+        </el-form-item>
+        <el-form-item label="储存仓库" :label-width="formLabelWidth">
+          <el-input v-model="form.newarehouse" autocomplete="off"></el-input>
+        </el-form-item>
+      </el-form>
+      <div slot="footer" class="dialog-footer">
+        <el-button @click="dialogFormVisible = false">取 消</el-button>
+        <el-button type="primary" @click="insertNewUser">确 定</el-button>
+      </div>
+    </el-dialog>
   </div>
 </template>
 
 <script>
 import { deleteProductData } from "@/service/delete.js";
 import { buyProductData } from "@/service/buyProduct.js";
+import {insertProductData} from "@/service/insert.js"
 import http from "@/service/index.js";
 export default {
   name: "ProductView",
@@ -87,12 +124,18 @@ export default {
       productNumber: "",
       buyNumber: "",
       ghid: "",
+      ckid: "",
       dialogFormVisible: false,
       dialog: false,
       loading: false,
       form: {
-        name: "",
+        spid: "",
+        newpassword: "",
+        newnumber: "",
+        newprice: "",
+        newarehouse: "",
         region: "",
+        region2: "",
         date1: "",
         date2: "",
         delivery: false,
@@ -133,6 +176,7 @@ export default {
     },
     async handleClose(done) {
       this.ghid = this.form.region;
+      this.ckid = this.form.region2;
       if (this.loading) {
         return;
       }
@@ -167,13 +211,40 @@ export default {
         this.productID,
         this.ghid,
         this.buyNumber,
-        this.productNumber
+        this.productNumber,
+        this.ckid
       );
     },
     cancelForm() {
       this.loading = false;
       this.dialog = false;
       clearTimeout(this.timer);
+    },
+    async insertNewUser() {
+      this.dialogFormVisible = false;
+      // console.log(
+      //   "插入的参数是",
+      //   this.form.spid,
+      //   this.form.newpassword,
+      //   this.form.newnumber,
+      //   this.form.newprice,
+      //   this.form.newarehouse
+      // );
+      const insertDataRes = await insertProductData(
+        this.form.spid,
+        this.form.newpassword,
+        this.form.newnumber,
+        this.form.newprice,
+        this.form.newarehouse
+      );
+      this.$notify({
+        title: "成功",
+        message: "数据插入成功",
+        type: "success",
+      });
+      setTimeout(() => {
+        location.reload();
+      }, 3000);
     },
   },
 };

@@ -116,7 +116,11 @@
             </el-menu-item>
             <el-menu-item index="6" @click="changePath('saleview')">
               <i class="el-icon-setting"></i>
-              <span slot="title">购货信息</span>
+              <span slot="title">订单信息</span>
+            </el-menu-item>
+            <el-menu-item index="7" @click="changePath('warehouseview')">
+              <i class="el-icon-setting"></i>
+              <span slot="title">仓库信息</span>
             </el-menu-item>
           </el-menu>
           <div class="daohang-bottom">
