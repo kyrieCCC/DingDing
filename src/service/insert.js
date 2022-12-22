@@ -22,4 +22,37 @@ function insertProductData(
   });
 }
 
-export { insertData, insertAdminData, insertProductData };
+function insertSupplierData(
+    ghid,
+    telephone,
+    name,
+    address,
+  ) {
+    http.post(`/registerSupplier`, null, {
+      params: { ghid, telephone, name, address},
+    });
+  }
+
+function insertOrderData(
+    ID,
+    ghid,
+    buynumber
+  ) {
+    http.post(`/registerOrder`, null, {
+      params: { ID, ghid, buynumber},
+    });
+  }  
+
+  function insertSaleData(ID, username, number) {
+    http.post(`/registerSale`, null, {
+      params: { ID, username, number },
+    });
+}
+    
+function insertWarehouseData(ckid, ckdz) {
+    http.post(`/registerWarehouse`, null, {
+      params: { ckid, ckdz },
+    });
+  }
+
+export { insertData, insertAdminData, insertProductData, insertSupplierData, insertOrderData, insertSaleData, insertWarehouseData};
