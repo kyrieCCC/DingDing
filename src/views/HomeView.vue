@@ -21,6 +21,7 @@
               width="200"
             ></el-table-column>
             <el-table-column property="number" label="购买数量"></el-table-column>
+            <el-table-column property="send" label="是否发货"></el-table-column>
           </el-table>
         </el-dialog>
       </div>

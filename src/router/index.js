@@ -23,6 +23,7 @@ import supplierView from "../views/userview/supplierView.vue"
 import orderView from "../views/userview/orderView.vue"
 import saleView from "../views/userview/saleView.vue"
 import warehouseView from "../views/userview/warehouseView.vue";
+import visitorView from "../views/view2/visitorView.vue";
 
 Vue.use(VueRouter);
 
@@ -58,6 +59,13 @@ const routes = [
     path: "/visitorhome",
     name: "VisitorHome",
     component: VisitorHome,
+    children: [
+      
+      {
+        path: "visitorview",
+        component: visitorView,
+      },
+    ]
   },
   {
     path: "/adminlogin",

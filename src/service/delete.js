@@ -21,7 +21,7 @@ function deleteOrderData(ID, number) {
 }
 
 function deleteSaleData(ID, username) {
-    http.post(`/deleteSale`, null, { params: { ID, username } })
+    http.post(`/deleteSale`, null, { params: { ID, username, number } })
 }
 
 function deleteWarehouseData(ckid) {

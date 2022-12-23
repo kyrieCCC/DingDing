@@ -5,6 +5,7 @@
       <el-table-column prop="ID" label="商品编号"> </el-table-column>
       <el-table-column prop="username" label="用户名"> </el-table-column>
       <el-table-column prop="number" label="购入数量"> </el-table-column>
+      <el-table-column prop="send" label="是否发货"> </el-table-column>
       <el-table-column fixed="right" label="操作">
         <template slot-scope="scope">
           <el-button
@@ -20,6 +21,13 @@
             size="small"
           >
             修改
+          </el-button>
+          <el-button
+            @click.native.prevent="sendGoods(scope.row, tableData)"
+            type="text"
+            size="small"
+          >
+            发货
           </el-button>
           <el-drawer
             title="请确认您修改的订单信息"
@@ -91,7 +99,8 @@
 <script>
 import { deleteSaleData } from "@/service/delete.js"; 
 import { updateSaleData } from "@/service/update.js";
-import { insertSaleData } from "@/service/insert.js";
+import { insertSaleData } from "@/service/insert.js"; 
+import { updateSendData } from "@/service/update.js";
 import http from "@/service/index.js";
 import ExportJsonExcel from "js-export-excel";
 export default {
@@ -122,6 +131,17 @@ export default {
     await this.getUserData();
   },
   methods: {
+    async sendGoods(row) {
+      const sendRes = await updateSendData(row.ID, row.username, row.number)
+      this.$notify({
+        title: "成功",
+        message: "商品发货成功",
+        type: "success",
+      });
+      setTimeout(() => {
+        location.reload();
+      }, 3000);
+    },
     exportExecl() {
       console.log("startloading");
       const datalist = this.tableData;
@@ -224,7 +244,7 @@ export default {
     },
     async deleteRow(row, tableData) {
       // console.log(row.ID, tableData);
-      const res = await deleteSaleData(row.ID, row.username);
+      const res = await deleteSaleData(row.ID, row.username, row.number);
       if (!res) {
         this.$notify({
           title: "成功",

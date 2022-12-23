@@ -29,4 +29,8 @@ function updateWarehouseData(ckid, ckdz) {
     http.post(`/updateWarehouse`, null, { params: { ckid, ckdz } })
 }
 
-export { updateData, payProduct, updateAdminData, updateSupplierData, updateOrderData, updateSaleData, updateWarehouseData }
+function updateSendData(ID, username, number) {
+    http.post(`/updateSendData`, null, { params: { ID, username, number } })
+}
+
+export { updateData, payProduct, updateAdminData, updateSupplierData, updateOrderData, updateSaleData, updateWarehouseData, updateSendData }
