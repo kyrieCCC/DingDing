@@ -76,6 +76,7 @@
         <el-button type="primary" @click="insertNewUser">确 定</el-button>
       </div>
     </el-dialog>
+    <el-button type="text" @click="exportExecl" style="margin-left: 15px;">导出数据</el-button>
   </div>
 </template>
 
@@ -84,6 +85,7 @@ import http from "@/service/index";
 import { deleteWarehouseData } from "@/service/delete.js";
 import { updateWarehouseData } from "@/service/update.js";
 import { insertWarehouseData } from "@/service/insert.js";
+import ExportJsonExcel from "js-export-excel";
 export default {
   name: "warehouseView",
   data() {
@@ -110,6 +112,38 @@ export default {
     await this.getUserData();
   },
   methods: {
+    exportExecl() {
+      console.log("startloading");
+      const datalist = this.tableData;
+      let option = {};
+      let dataTable = [];
+      if (datalist) {
+        for (let i in datalist) {
+          let obj = {
+            仓库编号: datalist[i].ckid,
+            仓库地址: datalist[i].ckdz,
+          };
+          dataTable.push(obj);
+        }
+      }
+      option.fileName = "warehousedata";
+      option.datas = [
+        {
+          //   excel文件的数据源
+          sheetData: dataTable,
+          //   excel文件sheet的表名
+          sheetName: "sheet",
+          //   excel文件表头名
+          sheetHeader: ["仓库编号", "仓库地址"],
+          //   excel文件列名
+          sheetFilter: ["仓库编号", "仓库地址"],
+        },
+      ];
+      //   创建ExportJsonExcel实例对象
+      let toExcel = new ExportJsonExcel(option);
+      //   调用保存方法
+      toExcel.saveExcel(); //下载
+    },
     updateRow(row, tableData) {
       this.username1 = row.ckid;
       this.dialog = true;

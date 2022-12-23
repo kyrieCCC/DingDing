@@ -100,6 +100,7 @@
         <el-button type="primary" @click="insertNewUser">确 定</el-button>
       </div>
     </el-dialog>
+    <el-button type="text" @click="exportExecl" style="margin-left: 15px;">导出数据</el-button>
   </div>
 </template>
 
@@ -107,7 +108,8 @@
 import http from "@/service/index";
 import { deleteAdminData } from "@/service/delete.js";
 import { updateAdminData } from "@/service/update.js"
-import {insertAdminData} from '@/service/insert.js'
+import { insertAdminData } from '@/service/insert.js'
+import ExportJsonExcel from "js-export-excel";
 export default {
   name: "AdminView",
   data() {
@@ -140,6 +142,40 @@ export default {
     await this.getUserData();
   },
   methods: {
+    exportExecl() {
+      console.log("startloading");
+      const datalist = this.tableData;
+      let option = {};
+      let dataTable = [];
+      if (datalist) {
+        for (let i in datalist) {
+          let obj = {
+            工号: datalist[i].ID,
+            密码: datalist[i].password,
+            性别: datalist[i].sex,
+            电话: datalist[i].telephone,
+          };
+          dataTable.push(obj);
+        }
+      }
+      option.fileName = "admindata";
+      option.datas = [
+        {
+          //   excel文件的数据源
+          sheetData: dataTable,
+          //   excel文件sheet的表名
+          sheetName: "sheet",
+          //   excel文件表头名
+          sheetHeader: ["工号", "密码", "性别", "电话"],
+          //   excel文件列名
+          sheetFilter: ["工号", "密码", "性别", "电话"],
+        },
+      ];
+      //   创建ExportJsonExcel实例对象
+      let toExcel = new ExportJsonExcel(option);
+      //   调用保存方法
+      toExcel.saveExcel(); //下载
+    },
     updateRow(row) {
       this.username1 = row.ID;
       this.dialog = true;

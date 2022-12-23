@@ -84,6 +84,7 @@
         <el-button type="primary" @click="insertNewUser">确 定</el-button>
       </div>
     </el-dialog>
+    <el-button type="text" @click="exportExecl" style="margin-left: 15px;">导出数据</el-button>
   </div>
 </template>
 
@@ -92,6 +93,7 @@ import { deleteSaleData } from "@/service/delete.js";
 import { updateSaleData } from "@/service/update.js";
 import { insertSaleData } from "@/service/insert.js";
 import http from "@/service/index.js";
+import ExportJsonExcel from "js-export-excel";
 export default {
   name: "saleView",
   data() {
@@ -120,6 +122,39 @@ export default {
     await this.getUserData();
   },
   methods: {
+    exportExecl() {
+      console.log("startloading");
+      const datalist = this.tableData;
+      let option = {};
+      let dataTable = [];
+      if (datalist) {
+        for (let i in datalist) {
+          let obj = {
+            商品编号: datalist[i].ID,
+            顾客名: datalist[i].username,
+            数量: datalist[i].number,
+          };
+          dataTable.push(obj);
+        }
+      }
+      option.fileName = "saledata";
+      option.datas = [
+        {
+          //   excel文件的数据源
+          sheetData: dataTable,
+          //   excel文件sheet的表名
+          sheetName: "sheet",
+          //   excel文件表头名
+          sheetHeader: ["商品编号", "顾客名", "数量"],
+          //   excel文件列名
+          sheetFilter: ["商品编号", "顾客名", "数量"],
+        },
+      ];
+      //   创建ExportJsonExcel实例对象
+      let toExcel = new ExportJsonExcel(option);
+      //   调用保存方法
+      toExcel.saveExcel(); //下载
+    },
     updateRow(row, tableData) {
       this.username1 = row.ID;
       this.dialog = true;

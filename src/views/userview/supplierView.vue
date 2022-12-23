@@ -97,6 +97,7 @@
         <el-button type="primary" @click="insertNewUser">确 定</el-button>
       </div>
     </el-dialog>
+    <el-button type="text" @click="exportExecl" style="margin-left: 15px;">导出数据</el-button>
   </div>
 </template>
 
@@ -105,6 +106,7 @@ import { deleteSupplierData } from "@/service/delete.js";
 import { updateSupplierData } from "@/service/update.js"; 
 import { insertSupplierData } from "@/service/insert.js";
 import http from "@/service/index.js";
+import ExportJsonExcel from "js-export-excel";
 export default {
   name: "supplierView",
   data() {
@@ -135,6 +137,40 @@ export default {
     await this.getUserData();
   },
   methods: {
+    exportExecl() {
+      console.log("startloading");
+      const datalist = this.tableData;
+      let option = {};
+      let dataTable = [];
+      if (datalist) {
+        for (let i in datalist) {
+          let obj = {
+            供货商编号: datalist[i].ghid,
+            电话: datalist[i].telephone,
+            名称: datalist[i].name,
+            地址: datalist[i].address,
+          };
+          dataTable.push(obj);
+        }
+      }
+      option.fileName = "supplierdata";
+      option.datas = [
+        {
+          //   excel文件的数据源
+          sheetData: dataTable,
+          //   excel文件sheet的表名
+          sheetName: "sheet",
+          //   excel文件表头名
+          sheetHeader: ["供货商编号", "电话", "名称", "地址"],
+          //   excel文件列名
+          sheetFilter: ["供货商编号", "电话", "名称", "地址"],
+        },
+      ];
+      //   创建ExportJsonExcel实例对象
+      let toExcel = new ExportJsonExcel(option);
+      //   调用保存方法
+      toExcel.saveExcel(); //下载
+    },
     updateRow(row) {
       this.username1 = row.ghid;
       this.dialog = true;

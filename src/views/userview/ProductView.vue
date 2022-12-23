@@ -1,6 +1,6 @@
 <template>
   <div>
-    <el-table :data="tableData" style="width: 100%" max-height="600">
+    <el-table :data="tableData" style="width: 100%" max-height="500">
       <el-table-column type="index"> </el-table-column>
       <el-table-column prop="ID" label="编号"> </el-table-column>
       <el-table-column prop="name" label="名称"> </el-table-column>
@@ -107,6 +107,7 @@
         <el-button type="primary" @click="insertNewUser">确 定</el-button>
       </div>
     </el-dialog>
+    <el-button type="text" @click="exportExecl" style="margin-left: 15px;">导出数据</el-button>
   </div>
 </template>
 
@@ -115,6 +116,7 @@ import { deleteProductData } from "@/service/delete.js";
 import { buyProductData } from "@/service/buyProduct.js";
 import {insertProductData} from "@/service/insert.js"
 import http from "@/service/index.js";
+import ExportJsonExcel from "js-export-excel";
 export default {
   name: "ProductView",
   data() {
@@ -151,6 +153,41 @@ export default {
     await this.getProductData();
   },
   methods: {
+    exportExecl() {
+      console.log("startloading");
+      const datalist = this.tableData;
+      let option = {};
+      let dataTable = [];
+      if (datalist) {
+        for (let i in datalist) {
+          let obj = {
+            商品编号: datalist[i].ID,
+            名称: datalist[i].name,
+            数量: datalist[i].number,
+            价格: datalist[i].prices,
+            仓库: datalist[i].ckid,
+          };
+          dataTable.push(obj);
+        }
+      }
+      option.fileName = "productdata";
+      option.datas = [
+        {
+          //   excel文件的数据源
+          sheetData: dataTable,
+          //   excel文件sheet的表名
+          sheetName: "sheet",
+          //   excel文件表头名
+          sheetHeader: ["商品编号", "名称", "数量", "价格", "仓库"],
+          //   excel文件列名
+          sheetFilter: ["商品编号", "名称", "数量", "价格", "仓库"],
+        },
+      ];
+      //   创建ExportJsonExcel实例对象
+      let toExcel = new ExportJsonExcel(option);
+      //   调用保存方法
+      toExcel.saveExcel(); //下载
+    },
     buyProduct(row, tableData) {
       this.productID = row.ID;
       this.productNumber = row.number;
