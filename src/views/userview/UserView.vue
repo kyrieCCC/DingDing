@@ -70,6 +70,15 @@
         </template>
       </el-table-column>
     </el-table>
+    <div style="width: 300px; margin-top: 20px; margin-left: 20px;">
+      <el-input
+        placeholder="请输入要查询的用户名"
+        v-model="input3"
+        class="input-with-select"
+      >
+        <el-button slot="append" icon="el-icon-search" @click="seacherUser"></el-button>
+      </el-input>
+    </div>
     <el-button
       type="text"
       @click="dialogFormVisible = true"
@@ -96,7 +105,9 @@
         <el-button type="primary" @click="insertNewUser">确 定</el-button>
       </div>
     </el-dialog>
-    <el-button type="text" @click="exportExecl" style="margin-left: 15px;">导出数据</el-button>
+    <el-button type="text" @click="exportExecl" style="margin-left: 15px"
+      >导出数据</el-button
+    >
   </div>
 </template>
 
@@ -111,6 +122,7 @@ export default {
   data() {
     return {
       tableData: [],
+      input3: "",
       username1: "",
       dialogFormVisible: false,
       dialog: false,
@@ -136,6 +148,15 @@ export default {
     await this.getUserData();
   },
   methods: {
+    async seacherUser() {
+      if (this.input3) {
+        const seacherRes = await http.get('/seacherUser', { params: { username: this.input3 } })
+        this.tableData = seacherRes.data.data
+      }
+      else {
+        await this.getUserData();
+      }
+    },
     exportExecl() {
       console.log("startloading");
       const datalist = this.tableData;
