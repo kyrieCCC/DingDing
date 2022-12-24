@@ -105,7 +105,7 @@
               DingDing秒杀正在火热进行中。。。
             </span>
             <span style="color: aliceblue;">
-              <el-statistic ref="statistic" format="HH:mm:ss" :value="deadline4" time-indices value-style="color: rgb(230, 224, 224)"> </el-statistic>
+              <el-statistic ref="statistic" format="HH:mm:ss" :value="deadline4" time-indices > </el-statistic>
             </span>
           </div>
           <div class="product-money">
@@ -203,6 +203,7 @@
               </div>
             </div>
             <div class="pay-buttom">
+              <el-button type="danger" @click="addToShippingCar">+ 加入购物车</el-button>
               <el-button type="success" @click="dialogVisible = true"
                 >购买</el-button
               >
@@ -248,6 +249,7 @@
 <script>
 import http from "@/service/index";
 import { payProduct } from "@/service/update.js"
+import { insertShoppingcarData } from "@/service/insert.js";
 export default {
   name: "Item3Product",
   data: function () {
@@ -272,6 +274,19 @@ export default {
     this.username = sessionStorage.getItem('username')
   },
   methods: {
+    async addToShippingCar() {
+      // EventBus.$emit('shippingCar', [this.ID, this.prices, this.num])
+      const addRes = await insertShoppingcarData(this.ID, this.username, this.prices, this.number, this.num)
+      this.$notify({
+        title: "成功",
+        message: "加入购物车成功",
+        type: "success",
+      });
+      setTimeout(() => {
+        location.reload()
+      }, 2000)
+      // this.$router.push('/home')
+    },
     hilarity() {
       this.$notify({
           title: '提示',

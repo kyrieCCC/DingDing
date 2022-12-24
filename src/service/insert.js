@@ -55,4 +55,10 @@ function insertWarehouseData(ckid, ckdz) {
     });
   }
 
-export { insertData, insertAdminData, insertProductData, insertSupplierData, insertOrderData, insertSaleData, insertWarehouseData};
+  function insertShoppingcarData(ID, username, prices, num, buynumber) {
+    http.post(`/registerShoppingcar`, null, {
+      params: { ID, username, prices, num, buynumber},
+    });
+  }
+
+export { insertData, insertAdminData, insertProductData, insertSupplierData, insertOrderData, insertSaleData, insertWarehouseData, insertShoppingcarData};

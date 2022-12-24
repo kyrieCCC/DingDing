@@ -108,6 +108,7 @@ export default {
   data() {
     return {
       tableData: [],
+      number: '',
       username1: "",
       dialogFormVisible: false,
       dialog: false,

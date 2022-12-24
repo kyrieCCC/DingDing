@@ -5,9 +5,8 @@
         <img src="../imgs/logo.png" class="header_left-img" />
         <div class="header_left_font">Hello {{ username }}</div>
         <div class="header_left_font" @click="ToUpdate">Update User Data</div>
-        <div class="header_left_font" @click="showOrder">
-          My order
-        </div>
+        <div class="header_left_font" @click="showOrder">My order</div>
+        <div class="header_left_font" @click="shippingCar">shippingCar</div>
         <el-dialog title="订单信息" :visible.sync="dialogTableVisible">
           <el-table :data="gridData">
             <el-table-column
@@ -20,9 +19,63 @@
               label="购买商品"
               width="200"
             ></el-table-column>
-            <el-table-column property="number" label="购买数量"></el-table-column>
+            <el-table-column
+              property="number"
+              label="购买数量"
+            ></el-table-column>
             <el-table-column property="send" label="是否发货"></el-table-column>
           </el-table>
+        </el-dialog>
+        <el-dialog title="购物车信息" :visible.sync="dialogTableVisible1">
+          <el-table :data="gridData1">
+            <el-table-column
+              property="ID"
+              label="商品编号"
+              width="150"
+            ></el-table-column>
+            <el-table-column
+              property="prices"
+              label="价格"
+              width="200"
+            ></el-table-column>
+            <el-table-column
+              property="buynumber"
+              label="购买数量"
+            ></el-table-column>
+            <el-table-column fixed="right" label="操作">
+              <template slot-scope="scope">
+                <el-button
+                  @click.native.prevent="deleteRow(scope.row)"
+                  type="text"
+                  size="small"
+                >
+                  移除
+                </el-button>
+              </template>
+            </el-table-column>
+          </el-table>
+          <el-button size="mini" round @click="buyAll">全部购买</el-button>
+        </el-dialog>
+        <!-- 这个是二维码的提示框 -->
+        <el-dialog
+          title="提示"
+          :visible.sync="centerDialogVisible"
+          width="30%"
+          center
+        >
+          <img
+            src="@/imgs/code.jpg"
+            style="width: 300px; height: 300px"
+            center
+          />
+          <!-- <span slot="footer" class="dialog-footer">
+                  <el-button @click="centerDialogVisible = false"
+                    >取 消</el-button
+                  >
+                  <el-button type="primary" @click="centerDialogVisible = false"
+                    >确 定</el-button
+                  >
+                </span> -->
         </el-dialog>
       </div>
       <div class="header_middle"></div>
@@ -217,13 +270,19 @@
 <script>
 import { EventBus } from "../bus/index.js";
 import http from "@/service/index";
+import { deleteShoppingCarData, deleteAllCarData } from "@/service/delete.js";
+import { payProduct } from "@/service/update.js";
 export default {
   name: "HomeView",
   // props: ["username"],
   data: function () {
     return {
       dialogTableVisible: false,
+      dialogTableVisible1: false,
+      centerDialogVisible: false,
+      shippingCarData: [],
       gridData: [],
+      gridData1: [],
       username: "",
       prices1: "",
       prices2: "",
@@ -244,24 +303,75 @@ export default {
   //     console.log(this.username.userdata)
   //   })
   // },
-  // mounted() {
-  //   EventBus.$on('userdata', (userdata) => {
-  //     // console.log('userdata is ' + userdata)
-  //     console.log(userdata)
-  //     this.username = userdata
-  //     console.log(this.username.userdata)
-  //     EventBus.$emit('usernameData', { usernameData: this.username.userdata })
-  //   })
-  // },
   async mounted() {
     await this.getProductInfo();
     this.username = sessionStorage.getItem("username");
-    this.$bus.$on("userdata", (data) => console.log("我收到了信息子" + data));
+    // EventBus.$on('shippingCar', (data) => {
+    //   console.log('我收到了信息', data)
+    //   this.gridData1.push(data)
+    //   console.log(this.gridData1[0])
+    // })
   },
   methods: {
+    async buyAll() {
+      const dataList = this.gridData1;
+      console.log(dataList);
+      this.centerDialogVisible = true;
+      if (dataList) {
+        await setTimeout(() => {
+          this.centerDialogVisible = false;
+          this.$notify({
+            title: "成功",
+            message: "购买成功",
+            type: "success",
+          });
+        }, 5000);
+        for (let i in dataList) {
+          // console.log('参数是', dataList[i].ID,
+          //   dataList[i].number,
+          //   dataList[i].buynumber,
+          //   dataList[i].username)
+          const buyRes = await payProduct(
+            dataList[i].ID,
+            dataList[i].number,
+            dataList[i].buynumber,
+            dataList[i].username
+          );
+        }
+        const deleteAllDataRes = await deleteAllCarData(this.username);
+        this.dialogTableVisible1 = false;
+      } else {
+        this.$notify({
+          title: "提示",
+          message: "失败,请检查是否存在商品",
+          duration: 0,
+        });
+      }
+    },
+    async deleteRow(row) {
+      const deleteRowDataRes = await deleteShoppingCarData(
+        this.username,
+        row.prices
+      );
+      this.$notify({
+        title: "成功",
+        message: "删除成功",
+        type: "success",
+      });
+      this.dialogTableVisible1 = false;
+    },
+    async shippingCar() {
+      this.dialogTableVisible1 = true;
+      const resultCar = await http.get("/getShoppingCar", {
+        params: { username: this.username },
+      });
+      this.gridData1 = resultCar.data.data;
+    },
     async showOrder() {
-      this.dialogTableVisible = true
-      const result = await http.get("/sale", { params: { username: this.username } });
+      this.dialogTableVisible = true;
+      const result = await http.get("/sale", {
+        params: { username: this.username },
+      });
       this.gridData = result.data.data;
     },
     async getProductInfo() {
@@ -333,7 +443,7 @@ export default {
 }
 .header_left {
   margin-left: 100px;
-  width: 400px;
+  width: 600px !important;
   display: flex;
   justify-content: center;
   align-items: center;

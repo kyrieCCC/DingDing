@@ -216,16 +216,16 @@
     },
     methods: {
       toProduct1() {
-        // this.$alert('您当前为游客身份，无法了解商品详情', '提示', {
-        //   confirmButtonText: '确定',
-        //   callback: action => {
-        //     this.$message({
-        //       type: 'info',
-        //       message: `action: ${ action }`
-        //     });
-        //   }
-        // });
-        this.$router.push('/visitorhome/visitorview')
+        this.$alert('您当前为游客身份，无法了解商品详情', '提示', {
+          confirmButtonText: '确定',
+          callback: action => {
+            this.$message({
+              type: 'info',
+              message: `action: ${ action }`
+            });
+          }
+        });
+        // this.$router.push('/visitorhome/visitorview')
       },
       toProduct2() {
         this.$alert('您当前为游客身份，无法了解商品详情', '提示', {
