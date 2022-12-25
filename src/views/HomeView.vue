@@ -55,6 +55,7 @@
             </el-table-column>
           </el-table>
           <el-button size="mini" round @click="buyAll">全部购买</el-button>
+          <div>总额是：{{ allMoney }}</div>
         </el-dialog>
         <!-- 这个是二维码的提示框 -->
         <el-dialog
@@ -283,6 +284,7 @@ export default {
       shippingCarData: [],
       gridData: [],
       gridData1: [],
+      allMoney: '',
       username: "",
       prices1: "",
       prices2: "",
@@ -366,6 +368,14 @@ export default {
         params: { username: this.username },
       });
       this.gridData1 = resultCar.data.data;
+      let money = 0
+      console.log(resultCar)
+      if (resultCar.data.data) {
+        for (let i = 0; i < resultCar.data.data.length; i++){
+          money += (resultCar.data.data[i].prices * resultCar.data.data[i].buynumber)
+        }
+      }
+      this.allMoney = money
     },
     async showOrder() {
       this.dialogTableVisible = true;
