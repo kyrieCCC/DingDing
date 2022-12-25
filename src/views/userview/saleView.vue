@@ -30,6 +30,39 @@
             发货
           </el-button>
           <el-drawer
+            title="请确认您的发货信息"
+            :before-close="handleCloseSendGoods"
+            :visible.sync="dialog1"
+            direction="rtl"
+            custom-class="demo-drawer"
+            ref="drawer"
+          >
+            <div class="demo-drawer__content">
+              <el-form :model="form">
+                <el-form-item label="商品编号" :label-width="formLabelWidth">
+                  <!-- <el-input v-model="form.name" autocomplete="off"></el-input> -->
+                  <div>{{ productID }}</div>
+                </el-form-item>
+                <el-form-item label="储存仓库" :label-width="formLabelWidth">
+                  <el-select v-model="form.region2" placeholder="请选择仓库id">
+                    <el-option label="中国1号仓" value="c1001"></el-option>
+                    <el-option label="美国1号仓" value="c1002"></el-option>
+                  </el-select>
+                </el-form-item>
+              </el-form>
+              <div class="demo-drawer__footer">
+                <el-button @click="cancelForm">取 消</el-button>
+                <!--@click="$refs.drawer.closeDrawer()" -->
+                <el-button
+                  type="primary"
+                  @click="sendData"
+                  :loading="loading"
+                  >{{ loading ? "提交中 ..." : "确 定" }}</el-button
+                >
+              </div>
+            </div>
+          </el-drawer>
+          <el-drawer
             title="请确认您修改的订单信息"
             :before-close="handleClose"
             :visible.sync="dialog"
@@ -44,7 +77,10 @@
                   <div>{{ username1 }}</div>
                 </el-form-item>
                 <el-form-item label="顾客名" :label-width="formLabelWidth">
-                  <el-input v-model="form.username" autocomplete="off"></el-input>
+                  <el-input
+                    v-model="form.username"
+                    autocomplete="off"
+                  ></el-input>
                   <!-- <div>{{ row.password }}</div> -->
                 </el-form-item>
                 <el-form-item label="购买数量" :label-width="formLabelWidth">
@@ -92,14 +128,16 @@
         <el-button type="primary" @click="insertNewUser">确 定</el-button>
       </div>
     </el-dialog>
-    <el-button type="text" @click="exportExecl" style="margin-left: 15px;">导出数据</el-button>
+    <el-button type="text" @click="exportExecl" style="margin-left: 15px"
+      >导出数据</el-button
+    >
   </div>
 </template>
 
 <script>
-import { deleteSaleData } from "@/service/delete.js"; 
+import { deleteSaleData } from "@/service/delete.js";
 import { updateSaleData } from "@/service/update.js";
-import { insertSaleData } from "@/service/insert.js"; 
+import { insertSaleData } from "@/service/insert.js";
 import { updateSendData } from "@/service/update.js";
 import http from "@/service/index.js";
 import ExportJsonExcel from "js-export-excel";
@@ -108,16 +146,22 @@ export default {
   data() {
     return {
       tableData: [],
-      number: '',
+      number: "",
+      number1: "", //带1的都是发货时候传出的数据
       username1: "",
+      username2: "",
       dialogFormVisible: false,
+      dialog1: false,
       dialog: false,
       loading: false,
+      loading1: false,
+      productID: "",
       form: {
         username: "",
+        region2: "",
         buynumber: "",
         newID: "",
-        newnumber: "", 
+        newnumber: "",
         newusername: "",
         delivery: false,
         type: [],
@@ -126,6 +170,7 @@ export default {
       },
       formLabelWidth: "80px",
       timer: null,
+      timer1: null,
     };
   },
   async mounted() {
@@ -133,15 +178,60 @@ export default {
   },
   methods: {
     async sendGoods(row) {
-      const sendRes = await updateSendData(row.ID, row.username, row.number)
+      this.productID = row.ID;
+      this.username2 = row.username;
+      this.number1 = row.number;
+      this.dialog1 = true;
+    },
+    async handleCloseSendGoods(done) {
+      if (this.loading) {
+        return;
+      }
+      this.$confirm("确定要提交表单吗？")
+        .then((_) => {
+          this.loading = true;
+          this.timer = setTimeout(() => {
+            done();
+            // 动画关闭需要一定的时间
+            setTimeout(() => {
+              this.loading = false;
+            }, 400);
+            this.$notify({
+              title: "成功",
+              message: "数据更新成功",
+              type: "success",
+            });
+            setTimeout(() => {
+              location.reload();
+            }, 1000);
+          }, 2000);
+        })
+        .catch((_) => {});
+      // console.log('我要传参数啊！！！', this.productID, this.username2, this.number1)
+      // const sendRes = await updateSendData(this.productID, this.username2, this.number1)
+      // this.dialog1 = false
+    },
+    async sendData() {
+      console.log(
+        "我要传参数啊！！！",
+        this.productID,
+        this.username2,
+        this.number1
+      );
+      const sendRes = await updateSendData(
+        this.productID,
+        this.username2,
+        this.number1
+      );
+      this.dialog1 = false;
       this.$notify({
         title: "成功",
-        message: "商品发货成功",
+        message: "数据更新成功",
         type: "success",
       });
       setTimeout(() => {
         location.reload();
-      }, 3000);
+      }, 2000);
     },
     exportExecl() {
       console.log("startloading");
@@ -213,12 +303,13 @@ export default {
       const res = await updateSaleData(
         this.username1,
         this.form.username,
-        this.form.buynumber,
+        this.form.buynumber
       );
     },
     cancelForm() {
       this.loading = false;
       this.dialog = false;
+      this.dialog1 = false;
       clearTimeout(this.timer);
     },
     async insertNewUser() {
@@ -232,7 +323,7 @@ export default {
       const insertDataRes = await insertSaleData(
         this.form.newID,
         this.form.newusername,
-        this.form.newnumber,
+        this.form.newnumber
       );
       this.$notify({
         title: "成功",
