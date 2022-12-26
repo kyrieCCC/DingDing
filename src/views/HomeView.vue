@@ -6,7 +6,7 @@
         <div class="header_left_font">Hello {{ username }}</div>
         <div class="header_left_font" @click="ToUpdate">Update User Data</div>
         <div class="header_left_font" @click="showOrder">My order</div>
-        <div class="header_left_font" @click="shippingCar">shippingCar</div>
+        <div class="header_left_font" @click="shippingCar">shoppingCart</div>
         <el-dialog title="订单信息" :visible.sync="dialogTableVisible">
           <el-table :data="gridData">
             <el-table-column
