@@ -202,7 +202,8 @@
   }
   
   .daohang {
-    height: 880px;
+    // height: 880px;
+    height: 670px;
     width: 270px;
   }
   .body {

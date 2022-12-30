@@ -5,8 +5,8 @@
         <img src="../imgs/logo.png" class="header_left-img" />
         <div class="header_left_font">Hello {{ username }}</div>
         <div class="header_left_font" @click="ToUpdate">Update User Data</div>
-        <div class="header_left_font" @click="showOrder">My order</div>
-        <div class="header_left_font" @click="shippingCar">shoppingCart</div>
+        <div class="header_left_font" @click="showOrder">My Order</div>
+        <div class="header_left_font" @click="shippingCar">ShoppingCart</div>
         <el-dialog title="订单信息" :visible.sync="dialogTableVisible">
           <el-table :data="gridData">
             <el-table-column
