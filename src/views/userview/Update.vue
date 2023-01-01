@@ -45,13 +45,13 @@
         },
       };
   },
-  mounted() {
-      EventBus.$on('userdata', (userdata) => {
-      console.log(userdata)
-        this.formLabelAlign.username = userdata
-      })
-      this.formLabelAlign.username = sessionStorage.getItem('username')
-    },
+  // mounted() {
+  //     EventBus.$on('userdata', (userdata) => {
+  //     console.log(userdata)
+  //       this.formLabelAlign.username = userdata
+  //     })
+  //     this.formLabelAlign.username = sessionStorage.getItem('username')
+  //   },
     methods: {
       async onSubmit() {
         const res = await updateData(
