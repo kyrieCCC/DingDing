@@ -119,7 +119,8 @@
         </div>
         <div class="botton">
           <el-button size="mini" round @click="loginByAdmin">我是管理员</el-button>
-          <el-button @click="loginEvent">{{
+          <!-- 登录按钮 -->
+          <el-button @click="loginEvent" :disabled="hasValues">{{   
             $t("message.login")
           }}</el-button>
           <el-button size="mini" round @click="loginByVisitor">游客进入</el-button>    
@@ -216,6 +217,11 @@ export default {
       this.$router.push("/register")
     }
   },
+  computed: {
+    hasValues() {
+      return this.username && this.password ? false : true
+    }
+  }
 };
 </script>
 
