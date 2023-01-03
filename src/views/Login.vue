@@ -198,7 +198,7 @@ export default {
       // this.$emit('userdata', {data: this.username})
       // EventBus.$emit('userdata', 'hello world')
       console.log('success')
-      this.$router.push("/home");
+      this.$router.push(`/home/${this.username}`);
       
     },
     loginByVisitor() {

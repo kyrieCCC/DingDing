@@ -29,8 +29,8 @@ Vue.use(VueRouter);
 
 const routes = [
   {
-    path: "/home",
-    name: "home",
+    path: "/home/:username",
+    props: true,
     component: HomeView,
     // children: [
     //   {

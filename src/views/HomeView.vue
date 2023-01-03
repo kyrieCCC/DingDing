@@ -275,7 +275,7 @@ import { deleteShoppingCarData, deleteAllCarData } from "@/service/delete.js";
 import { payProduct } from "@/service/update.js";
 export default {
   name: "HomeView",
-  // props: ["username"],
+  props: ["username"],
   data: function () {
     return {
       dialogTableVisible: false,
@@ -285,7 +285,7 @@ export default {
       gridData: [],
       gridData1: [],
       allMoney: '',
-      username: "",
+      // username: "",
       prices1: "",
       prices2: "",
       prices3: "",
@@ -307,7 +307,8 @@ export default {
   // },
   async mounted() {
     await this.getProductInfo();
-    this.username = sessionStorage.getItem("username");
+    console.log(this.username)
+    // this.username = sessionStorage.getItem("username");
     // EventBus.$on('shippingCar', (data) => {
     //   console.log('我收到了信息', data)
     //   this.gridData1.push(data)
