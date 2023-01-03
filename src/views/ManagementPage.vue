@@ -152,7 +152,10 @@
         this.$router.push("/login");
       },
       changePath(path) {
-        this.$router.push(`/managementpage/${path}`);
+        const aimRouter = `/managementpage/${path}`
+        if (aimRouter !== this.$router.currentRoute.fullPath) {
+          this.$router.push(`/managementpage/${path}`);
+        }
       },
     },
   };
