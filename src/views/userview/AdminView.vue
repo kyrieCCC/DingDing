@@ -112,6 +112,7 @@ import { insertAdminData } from '@/service/insert.js'
 import ExportJsonExcel from "js-export-excel";
 export default {
   name: "AdminView",
+  props: ["id"],
   data() {
     return {
       tableData: [],
@@ -140,6 +141,7 @@ export default {
   },
   async mounted() {
     await this.getUserData();
+    // console.log(this.id)
   },
   methods: {
     exportExecl() {
@@ -181,7 +183,7 @@ export default {
       this.dialog = true;
     },
     async deleteRow(row, tableData) {
-      if (sessionStorage.getItem("adminID") === '1001') {
+      if (this.id === '1001') {
         const deleteRes = await deleteAdminData(row.ID);
         this.$notify({
           title: "成功",
@@ -195,7 +197,7 @@ export default {
       alert("您无此权限");
     },
     async handleClose(done) { //修改信息
-      if (sessionStorage.getItem("adminID") !== '1001') {
+      if (this.id !== '1001') {
         alert("您无此权限");
         return
       }

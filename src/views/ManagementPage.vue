@@ -58,7 +58,7 @@
               p-id="1186"
             ></path>
           </svg>
-          <div class="header_left_font">主页</div>
+          <div class="header_left_font">您好，管理员{{ id }}</div>
         </div>
         <div class="header_middle"></div>
         <div class="header_right" @click="signOut">
@@ -141,20 +141,21 @@
 //   import HelloWorld from "@/components/HelloWorld.vue";
   
   export default {
-    name: "ManagementPage",
+  name: "ManagementPage",
+    props: ["id"],
     // inject: ['msg'],
     // components: {
     //   HelloWorld,
     // },
     methods: {
       signOut() {
-        sessionStorage.removeItem('adminID')
+        // sessionStorage.removeItem('adminID')
         this.$router.push("/login");
       },
       changePath(path) {
-        const aimRouter = `/managementpage/${path}`
+        const aimRouter = `/managementpage/${this.id}/${path}`
         if (aimRouter !== this.$router.currentRoute.fullPath) {
-          this.$router.push(`/managementpage/${path}`);
+          this.$router.push(`/managementpage/${this.id}/${path}`);
         }
       },
     },

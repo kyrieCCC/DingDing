@@ -408,31 +408,31 @@ export default {
       this.$router.push("/update");
     },
     toProduct1() {
-      this.$router.push("/item1product");
+      this.$router.push(`${this.username}/item1product`);
     },
     toProduct2() {
-      this.$router.push("/item2product");
+      this.$router.push(`${this.username}/item2product`);
     },
     toProduct3() {
-      this.$router.push("/item3product");
+      this.$router.push(`${this.username}/item3product`);
     },
     toProduct4() {
-      this.$router.push("/item4product");
+      this.$router.push(`${this.username}/item4product`);
     },
     toProduct5() {
-      this.$router.push("/item5product");
+      this.$router.push(`${this.username}/item5product`);
     },
     toProduct6() {
-      this.$router.push("/item6product");
+      this.$router.push(`${this.username}/item6product`);
     },
     toProduct7() {
-      this.$router.push("/item7product");
+      this.$router.push(`${this.username}/item7product`);
     },
     toProduct8() {
-      this.$router.push("/item8product");
+      this.$router.push(`${this.username}/item8product`);
     },
     toProduct9() {
-      this.$router.push("/item9product");
+      this.$router.push(`${this.username}/item9product`);
     },
   },
 };

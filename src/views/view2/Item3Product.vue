@@ -105,7 +105,7 @@
               DingDing秒杀正在火热进行中。。。
             </span>
             <span style="color: aliceblue;">
-              <el-statistic ref="statistic" format="HH:mm:ss" :value="deadline4" time-indices > </el-statistic>
+              <el-statistic ref="statistic" format="HH:mm:ss" :value="deadline4" time-indices style="color: rgb(230, 224, 224)"> </el-statistic>
             </span>
           </div>
           <div class="product-money">
@@ -252,9 +252,10 @@ import { payProduct } from "@/service/update.js"
 import { insertShoppingcarData } from "@/service/insert.js";
 export default {
   name: "Item3Product",
+  props: ["username"],
   data: function () {
     return {
-      username: '',
+      // username: '',
       center: true,
       centerDialogVisible: false,
       num: 1,
@@ -271,7 +272,7 @@ export default {
   },
   async mounted() {
     await this.getProductInfo(this.ID, this.number);
-    this.username = sessionStorage.getItem('username')
+    // this.username = sessionStorage.getItem('username')
   },
   methods: {
     async addToShippingCar() {

@@ -189,7 +189,7 @@ export default {
         });
         return;
       }
-      sessionStorage.setItem('username', this.username)
+      // sessionStorage.setItem('username', this.username)
       this.$notify({
         title: "成功",
         message: "页面跳转成功",
@@ -210,7 +210,7 @@ export default {
       this.$router.push("/visitorhome");
     },
     loginByAdmin() {
-      this.$router.push("/adminlogin")
+      this.$router.push(`/adminlogin`)
     },
     toRegister() {
       this.$router.push("/register")

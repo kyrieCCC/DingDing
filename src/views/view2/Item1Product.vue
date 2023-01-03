@@ -110,7 +110,7 @@
                 format="HH:mm:ss"
                 :value="deadline4"
                 time-indices
-                
+                style="color: rgb(230, 224, 224)"
               >
               </el-statistic>
             </span>
@@ -268,9 +268,10 @@ import { payProduct } from "@/service/update.js";
 import { insertShoppingcarData } from "@/service/insert.js";
 export default {
   name: "Item1Product",
+  props: ["username"],
   data: function () {
     return {
-      username: "",
+      // username: "",
       center: true,
       centerDialogVisible: false,
       num: 1,
@@ -287,7 +288,7 @@ export default {
   },
   async mounted() {
     await this.getProductInfo(this.ID, this.number);
-    this.username = sessionStorage.getItem("username");
+    // this.username = sessionStorage.getItem("username");
   },
   methods: {
     async addToShippingCar() {

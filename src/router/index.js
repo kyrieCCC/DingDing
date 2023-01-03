@@ -78,11 +78,11 @@ const routes = [
     component: Register,
   },
   {
-    path: "/managementpage",
-    name: "ManagementPage",
+    path: "/managementpage/:id",
+    props: true,
     component: ManagementPage,
     children: [
-      { path: "/", redirect: "/managementpage/userview" },
+      { path: "/", redirect: "/managementpage/:id/userview" },
       {
         path: "userview",
         component: UserView,
@@ -90,6 +90,7 @@ const routes = [
       {
         path: "adminview",
         component: AdminView,
+        props: true,
       },
       {
         path: "productview",
@@ -114,48 +115,56 @@ const routes = [
     ]
   },
   {
-    path: "/item1product",
-    name: "Item1Product",
+    path: "/home/:username/item1product",
+    props: true,
     component: Item1Product
   },
   {
-    path: "/item2product",
+    path: "/home/:username/item2product",
     name: "Item2Product",
+    props: true,
     component: Item2Product,
   },
   {
-    path: "/item3product",
+    path: "/home/:username/item3product",
     name: "Item3Product",
+    props: true,
     component: Item3Product,
   },
   {
-    path: "/item4product",
+    path: "/home/:username/item4product",
     name: "Item4Product",
+    props: true,
     component: Item4Product,
   },
   {
-    path: "/item5product",
+    path: "/home/:username/item5product",
     name: "Item5Product",
+    props: true,
     component: Item5Product,
   },
   {
-    path: "/item6product",
+    path: "/home/:username/item6product",
     name: "Item6Product",
+    props: true,
     component: Item6Product,
   },
   {
-    path: "/item7product",
+    path: "/home/:username/item7product",
     name: "Item7Product",
+    props: true,
     component: Item7Product,
   },
   {
-    path: "/item8product",
+    path: "/home/:username/item8product",
     name: "Item8Product",
+    props: true,
     component: Item8Product,
   },
   {
-    path: "/item9product",
+    path: "/home/:username/item9product",
     name: "Item9Product",
+    props: true,
     component: Item9Product,
   }
 ];
