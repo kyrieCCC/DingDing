@@ -180,7 +180,6 @@ export default {
     // },
 
     async loginEvent() {
-      // this.$bus.$emit('userdata', 'hello world')
       const res = await loginService(this.username, this.password);
       if (!res.data.success) { //通过success这个属性确定是否存在该数据
         this.$notify({
@@ -190,14 +189,11 @@ export default {
         });
         return;
       }
-      // sessionStorage.setItem('username', this.username)
       this.$notify({
         title: "成功",
         message: "页面跳转成功",
         type: "success",
       });
-      // this.$emit('userdata', {data: this.username})
-      // EventBus.$emit('userdata', 'hello world')
       console.log('success')
       //这里使用路由传参进行操作
       this.$router.push(`/home/${this.username}`);
