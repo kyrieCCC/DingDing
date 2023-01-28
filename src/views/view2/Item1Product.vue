@@ -77,7 +77,7 @@
         <div class="product-introduce">
           <div class="product-introduce-font">
             <img style="height: 20px" src="@/imgs/hot.png" />
-            好看的衣服好看的衣服好看的衣服好看的衣服好看的衣服好看的衣服好看的衣服
+            [这是一段描述信息]好看的衣服好看的衣服好看的衣服好看的衣服好看的衣服好看的衣服好看的衣服
           </div>
           <div class="dingding-hotpay">
             <svg
