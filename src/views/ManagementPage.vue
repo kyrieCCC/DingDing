@@ -162,7 +162,7 @@
   };
   </script>
   
-  <style lang="scss">
+  <style lang="scss" scoped>
   * {
     padding: 0;
     margin: 0;
@@ -177,7 +177,7 @@
     padding: 16px 32px;
   
     .header_left {
-      width: 150px;
+      width: 300px;
       display: flex;
       justify-content: center;
       align-items: center;

@@ -535,7 +535,7 @@ export default {
 }
 .shop-bottom:hover {
   cursor: pointer;
-  border: 3px solid #fff;
+  /* border: 3px solid #fff; */
 }
 .after-img {
   padding-top: 40px;
