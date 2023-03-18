@@ -438,12 +438,13 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 * {
   padding: 0;
   margin: 0;
 }
 .container {
+  background-color: rgb(245, 232, 241);
   height: 100%;
 }
 .header {
@@ -558,10 +559,12 @@ export default {
   margin: 28px 160px;
 }
 .shop-item {
-  width: 1100px;
+  /* background-color: rgb(227, 193, 210); */
+  width: 1150px;
   height: 476px;
-  margin: 0px 160px;
+  margin: 0px 170px;
   display: flex;
+  justify-content: space-between;
 }
 .shop-item1 {
   width: 362px;
@@ -571,6 +574,7 @@ export default {
 .shop-item1 > img {
   width: 362px;
   height: 362px;
+  border-radius: 10px;
 }
 .shop-item1 > img:hover {
   cursor: pointer;
