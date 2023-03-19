@@ -12,7 +12,10 @@ module.exports = {
             },
             {
                 text: "文档报告",
-                items: [{text: '研发背景', link: "/doc/background.md"}]
+                items: [{ text: '研发背景', link: "/doc/background.md" },
+                        { text: '开发方法', link: "/doc/idea.md" },
+                        { text: '设计方法', link: "/doc/design.md" }
+                ]
             }
         ]
     }
