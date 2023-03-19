@@ -11,7 +11,7 @@ hero:
   actions:
     - theme: brand # 主题
       text: 开始
-      link: /component/index.md # 路由路径
+      link: /doc/index.md # 路由路径
 
 
 
