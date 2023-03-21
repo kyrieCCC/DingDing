@@ -8,10 +8,13 @@ hero:
   name: DingDing
   text: 跨境电商前后台系统
   tagline: 电商项目
+  image: /doc/myphoto.jpg
+  alt: DingDing
   actions:
     - theme: brand # 主题
       text: 开始
       link: /doc/index.md # 路由路径
+      
 
 
 
